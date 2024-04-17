@@ -1,7 +1,7 @@
 export function Footer() {
   return (
-    <>
-      <div>Footeasdfasdfr</div>
-    </>
+    <div className="footer">
+      <div>Footer</div>
+    </div>
   );
 }
