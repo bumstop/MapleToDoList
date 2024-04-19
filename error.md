@@ -1,8 +1,8 @@
 # 개발중 발생한 오류 모음
 
-## SearchBox.tsx
+# SearchBox.tsx
 
-`useRef`를 사용해 `input` 을 지정했는데 에러가 발생했다.
+## `useRef`를 사용해 `input` 을 지정했는데 에러가 발생했다.
 
 ```
 export function SearchBox() {
@@ -24,11 +24,30 @@ return (
 'HTMLInputElement | undefined' 형식은 'HTMLInputElement | null' 형식에 할당할 수 없습니다.  
 'undefined' 형식은 'HTMLInputElement | null' 형식에 할당할 수 없습니다.
 
-
-
 **아래와 같이 `useRef` 에 `null` 을 넣어주니 에러가 사라졌다.**
 
 ```
 const searchInputRef = useRef<HTMLInputElement>(null);
 ```
 
+## `promise` 객체에서 리턴된 result 값 꺼내기
+
+`getOcid` 는 `promise` 객체를 반환한다.
+
+```
+const ocid = getOcid(nickname);
+console.log(ocid);
+```
+
+![promise_console](./error_image/promise_console.png)
+
+<br/>
+
+`getOcid` 앞에 `await` 를 붙인 후 할당해주니 `ocid` 의 값에 PromiseResult의 값이 할당된것을 확인 할 수 있다.
+
+```
+const ocid = await getOcid(nickname);
+console.log(ocid);
+```
+
+![promiseawait_console](./error_image/promiseawait_console.png)
