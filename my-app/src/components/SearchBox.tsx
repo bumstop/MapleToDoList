@@ -78,8 +78,6 @@ export function SearchBox() {
       >
         검색
       </button>
- 
- 
     </div>
   );
 }
