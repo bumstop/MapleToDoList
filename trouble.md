@@ -39,7 +39,7 @@ const ocid = getOcid(nickname);
 console.log(ocid);
 ```
 
-![promise_console](./error_image/promise_console.png)
+![promise_console](./trouble_image/promise_console.png)
 
 <br/>
 
@@ -50,4 +50,4 @@ const ocid = await getOcid(nickname);
 console.log(ocid);
 ```
 
-![promiseawait_console](./error_image/promiseawait_console.png)
+![promiseawait_console](./trouble_image/promiseawait_console.png)

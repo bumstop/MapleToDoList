@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { SearchBox, SearchBoxDiv } from "../components/SearchBox";
+import { SearchBox } from "../components/SearchBox";
 
 const HeaderDiv = styled.div`
   position: relative;
   height: 30px;
   margin-bottom: 10px;
 `;
-const SearchBoxWrap = styled(SearchBoxDiv)`
+const SearchBoxWrapDiv = styled.div`
   position: absolute;
   top: 0;
   right: 0;
@@ -15,9 +15,9 @@ const SearchBoxWrap = styled(SearchBoxDiv)`
 export function Header() {
   return (
     <HeaderDiv>
-      <SearchBoxWrap>
+      <SearchBoxWrapDiv>
         <SearchBox />
-      </SearchBoxWrap>
+      </SearchBoxWrapDiv>
     </HeaderDiv>
   );
 }
