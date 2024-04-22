@@ -1,5 +1,38 @@
 import axios, { AxiosError } from "axios";
 import { useEffect, useRef } from "react";
+import styled from "styled-components";
+
+export const SearchBoxDiv = styled.div`
+  position: relative;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #eee;
+`;
+const CharacterSearchInput = styled.input`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 30px;
+
+  outline: none;
+  border: none;
+  background-color: transparent;
+`;
+
+const SearchButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: no-repeat center/contain url(../image/magnifier_icon.png);
+  cursor: pointer;
+`;
 
 const NEXONOPEN_API_SERVER = "https://open.api.nexon.com";
 const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY;
@@ -56,9 +89,8 @@ export function SearchBox() {
   useEffect(() => {}, []);
 
   return (
-    <div className="search-box">
-      <input
-        id="search-input"
+    <SearchBoxDiv>
+      <CharacterSearchInput
         ref={searchInputRef}
         type="text"
         placeholder="캐릭터 검색"
@@ -68,16 +100,16 @@ export function SearchBox() {
           }
         }}
       />
-      <button
-        className="search-btn"
+      {/* Copyright: Creative Stall Premium - Flaticon */}
+      <SearchButton
+      // Copyright: Creative Stall Premium - Flaticon
         onClick={() => {
           if (searchInputRef.current) {
             getCharacterBasicInfor(searchInputRef.current.value);
           }
         }}
       >
-        검색
-      </button>
-    </div>
+      </SearchButton>
+    </SearchBoxDiv>
   );
 }
