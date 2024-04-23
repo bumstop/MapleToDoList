@@ -21,7 +21,6 @@ const CharacterSearchInput = styled.input`
   border: none;
   background-color: transparent;
 `;
-
 const SearchButton = styled.button`
   position: absolute;
   top: 50%;

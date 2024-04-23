@@ -1,21 +1,21 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface SearchInfoState {
-  class: string | null;
-  guildName: string | null;
-  image: string | null;
-  level: number | null;
-  name: string | null;
-  worldName: string | null;
+  class: string | undefined;
+  guildName: string | undefined;
+  image: string | undefined;
+  level: number | undefined;
+  name: string | undefined;
+  worldName: string | undefined;
 }
 
 const initialState: SearchInfoState = {
-  class: null,
-  guildName: null,
-  image: null,
-  level: null,
-  name: null,
-  worldName: null,
+  class: undefined,
+  guildName: undefined,
+  image: undefined,
+  level: undefined,
+  name: undefined,
+  worldName: undefined,
 };
 
 export const searchInfoSlice = createSlice({
