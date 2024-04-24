@@ -1,38 +1,16 @@
 import axios, { AxiosError } from "axios";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { setCharacterClass, setCharacterGuildName, setCharacterImage, setCharacterLevel, setCharacterName, setCharacterWorldName } from "../redux/searchInfoSlice";
-
-const SearchBoxDiv = styled.div`
-  position: relative;
-  width: 200px;
-  height: 30px;
-  border-radius: 20px;
-  background-color: #eee;
-`;
-const CharacterSearchInput = styled.input`
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding-left: 12px;
-  padding-right: 30px;
-  outline: none;
-  border: none;
-  background-color: transparent;
-`;
-const SearchButton = styled.button`
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  border: none;
-  background: no-repeat center/contain url(../image/magnifier_icon.png); // Copyright: Creative Stall Premium - Flaticon
-  cursor: pointer;
-`;
+import {
+  setCharacterClass,
+  setCharacterGuildName,
+  setCharacterImage,
+  setCharacterLevel,
+  setCharacterName,
+  setCharacterWorldName,
+} from "../redux/searchInfoSlice";
+import { modalOpen } from "../redux/modalStateSlice";
 
 const NEXONOPEN_API_SERVER = "https://open.api.nexon.com";
 const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY;
@@ -91,6 +69,8 @@ export function SearchBox() {
       dispatch(setCharacterLevel(response.data.character_level));
       dispatch(setCharacterName(response.data.character_name));
       dispatch(setCharacterWorldName(response.data.world_name));
+
+      dispatch(modalOpen());
     } catch (error) {
       console.log("Error:", error);
     }
@@ -118,3 +98,34 @@ export function SearchBox() {
     </SearchBoxDiv>
   );
 }
+
+const SearchBoxDiv = styled.div`
+  position: relative;
+  width: 200px;
+  height: 30px;
+  border-radius: 20px;
+  background-color: #eee;
+`;
+const CharacterSearchInput = styled.input`
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding-left: 12px;
+  padding-right: 30px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+`;
+const SearchButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: no-repeat center/contain
+    url(${process.env.PUBLIC_URL}/image/magnifier_icon.png); // Copyright: Creative Stall Premium - Flaticon
+  cursor: pointer;
+`;

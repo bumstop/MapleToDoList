@@ -34,6 +34,7 @@ export const searchInfoSlice = createSlice({
     setCharacterLevel(state, action: PayloadAction<number>) {
       state.level = action.payload;
     },
+
     setCharacterName(state, action: PayloadAction<string>) {
       state.name = action.payload;
     },

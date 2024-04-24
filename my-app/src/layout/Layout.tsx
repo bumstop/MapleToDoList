@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Header } from "./Header";
 import { Main } from "./Main";
+import { Modal } from "../components/Modal";
 
 const AppBackground = styled.div`
   position: relative;
@@ -26,10 +27,13 @@ const AppBody = styled.div`
 export function Layout() {
   return (
     <AppBackground>
+      {/* 앱 바디 */}
       <AppBody>
         <Header />
         <Main />
       </AppBody>
+      {/* 모달창 */}
+      <Modal />
     </AppBackground>
   );
 }
