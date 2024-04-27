@@ -47,8 +47,8 @@ export function SearchBox() {
   const getCharacterBasicInfo = async (str: string) => {
     const nickname = str.trim(); // 공백 제거
     if (!nickname) return; // 입력값이 없을 경우 함수를 빠져나옴
+    
     const ocid = await getOcid(nickname);
-    console.log(ocid);
     if (!ocid) return; // undefined일 경우 함수 빠져나옴
 
     try {
@@ -62,7 +62,8 @@ export function SearchBox() {
           NEXONOPEN_API_SERVER + "/maplestory/v1/character/basic?ocid=" + ocid,
       });
       console.log(response.data);
-
+      
+      // 검색한 캐릭터 기본 정보 저장
       dispatch(setCharacterClass(response.data.character_class));
       dispatch(setCharacterGuildName(response.data.character_guild_name));
       dispatch(setCharacterImage(response.data.character_image));
@@ -70,6 +71,7 @@ export function SearchBox() {
       dispatch(setCharacterName(response.data.character_name));
       dispatch(setCharacterWorldName(response.data.world_name));
 
+      // 캐릭터 카드가 있는 모달창 오픈
       dispatch(modalOpen());
     } catch (error) {
       console.log("Error:", error);

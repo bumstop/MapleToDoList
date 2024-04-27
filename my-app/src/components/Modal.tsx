@@ -1,16 +1,27 @@
 import styled from "styled-components";
 import { CharacterCard } from "./CharacterCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect } from "react";
+import { modalClose } from "../redux/modalStateSlice";
 
 export function Modal() {
-  const modalIsOpen = useSelector((state: RootState) => state.modalState.isOpen);
+  const dispatch = useDispatch();
+  const modalIsOpen = useSelector(
+    (state: RootState) => state.modalState.isOpen
+  );
+
   useEffect(() => {
     console.log("modalIsOpen:", modalIsOpen);
   }, [modalIsOpen]);
+
   return (
-    <ModalDiv $isOpen={modalIsOpen}>
+    <ModalDiv
+      $isOpen={modalIsOpen}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) dispatch(modalClose()); // 이벤트 타겟이 ModalDiv면 close
+      }}
+    >
       <ContentWrapDiv>
         <CharacterCard />
       </ContentWrapDiv>
