@@ -1,10 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../redux/store";
-import {
-  CharacterListState,
-  addCharacterList,
-} from "../redux/characterListSlice";
+import { addCharacterList } from "../redux/characterListSlice";
 import { useEffect } from "react";
 
 export function CharacterCard() {
@@ -28,9 +25,11 @@ export function CharacterCard() {
     (state: RootState) => state.searchInfo.worldName
   );
   const CharacterList = useSelector((state: RootState) => state.CharacterList);
-  
+
+
+
   useEffect(() => {
-    console.log(CharacterList);
+    console.log("리스트에 저장된 캐릭터 정보:", CharacterList);
   }, [CharacterList]);
 
   return (

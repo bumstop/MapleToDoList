@@ -4,21 +4,21 @@ import { SearchInfoState } from "./searchInfoSlice";
 export interface CharacterListState {
   [key: string]: {
     // 키값으로 캐릭터 닉네임을 사용
-    class: string | undefined;
+    class: string;
     guildName: string | undefined;
-    image: string | undefined;
-    level: number | undefined;
-    worldName: string | undefined;
+    image: string;
+    level: number;
+    worldName: string;
   };
 }
 
 const initialState: CharacterListState = {
   nickname: {
-    class: undefined,
+    class: "",
     guildName: undefined,
-    image: undefined,
-    level: undefined,
-    worldName: undefined,
+    image: "",
+    level: 0,
+    worldName: "",
   },
 };
 
