@@ -9,6 +9,7 @@ export interface CharacterListState {
     character_image: string;
     character_level: number;
     world_name: string;
+    guild_mark: string;
   };
 }
 
@@ -19,6 +20,7 @@ const initialState: CharacterListState = {
     character_image: "",
     character_level: 0,
     world_name: "",
+    guild_mark: "",
   },
 };
 
@@ -35,6 +37,7 @@ export const CharacterListSlice = createSlice({
         character_image: action.payload.character_image,
         character_level: action.payload.character_level,
         world_name: action.payload.world_name,
+        guild_mark: action.payload.guild_mark,
       };
     },
     removeCharacterList(state, action: PayloadAction<string>) {

@@ -33,7 +33,7 @@ export function CharacterCard() {
   useEffect(() => {
     console.log("리스트에 저장된 캐릭터 정보:", CharacterList);
     console.log(GuildMark);
-  }, [CharacterList]);
+  }, [CharacterList, GuildMark]);
 
   return (
     <CharacterCardDiv>
@@ -89,8 +89,8 @@ export function CharacterCard() {
           )}
         </CharacterGuildNameDiv>
         <InfoBottomDiv>
-          <CharacterNameDiv>{characterName}</CharacterNameDiv>
           <CharacterLevelDiv>Lv. {characterLevel}</CharacterLevelDiv>
+          <CharacterNameDiv>{characterName}</CharacterNameDiv>
         </InfoBottomDiv>
       </CharacterInfoSectionDiv>
     </CharacterCardDiv>
@@ -102,7 +102,7 @@ const CharacterCardDiv = styled.div`
   position: relative;
   width: 200px;
   height: 300px;
-  padding: 15px;
+  padding: 10px;
   border-radius: 0.5rem;
   background: no-repeat center/cover
     url(${process.env.PUBLIC_URL}/image/xmas_03_2560x1440.jpg);
@@ -121,7 +121,9 @@ const CharacterCardDiv = styled.div`
 `;
 const CharacterImageSectionDiv = styled.div`
   position: relative;
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
   height: 70%;
 `;
 const CharacterInfoSectionDiv = styled.div`
@@ -149,6 +151,7 @@ const CharacterGuildNameDiv = styled.div`
   font-size: 14px;
   font-weight: 900;
 `;
+
 const GuildMarkImg = styled.img`
   height: 100%;
   margin-right: 4px;
@@ -156,9 +159,15 @@ const GuildMarkImg = styled.img`
 
 const CharacterWorldNameDiv = styled.div`
   position: absolute;
+  top: 11px;
+  left: 10px;
   display: flex;
   align-items: center;
   gap: 3px;
+  padding: 3px 8px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
@@ -173,12 +182,12 @@ const InfoBottomDiv = styled.div`
   right: 0;
 `;
 const CharacterLevelDiv = styled.div`
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: end;
 `;
 const CharacterNameDiv = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 900;
   text-align: end;
 `;
