@@ -1,21 +1,23 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface SearchInfoState {
-  class: string;
-  guildName: string | undefined;
-  image: string;
-  level: number;
-  name: string;
-  worldName: string;
+  character_class: string;
+  character_guild_name: string;
+  character_image: string;
+  character_level: number;
+  character_name: string;
+  world_name: string;
+  guild_mark: string;
 }
 
 const initialState: SearchInfoState = {
-  class: "",
-  guildName: undefined,
-  image: "",
-  level: 0,
-  name: "",
-  worldName: "",
+  character_class: "",
+  character_guild_name: "",
+  character_image: "",
+  character_level: 0,
+  character_name: "",
+  world_name: "",
+  guild_mark: "",
 };
 
 export const searchInfoSlice = createSlice({
@@ -23,22 +25,25 @@ export const searchInfoSlice = createSlice({
   initialState: initialState,
   reducers: {
     setCharacterClass(state, action: PayloadAction<string>) {
-      state.class = action.payload;
+      state.character_class = action.payload;
     },
     setCharacterGuildName(state, action: PayloadAction<string>) {
-      state.guildName = action.payload;
+      state.character_guild_name = action.payload;
     },
     setCharacterImage(state, action: PayloadAction<string>) {
-      state.image = action.payload;
+      state.character_image = action.payload;
     },
     setCharacterLevel(state, action: PayloadAction<number>) {
-      state.level = action.payload;
+      state.character_level = action.payload;
     },
     setCharacterName(state, action: PayloadAction<string>) {
-      state.name = action.payload;
+      state.character_name = action.payload;
     },
     setCharacterWorldName(state, action: PayloadAction<string>) {
-      state.worldName = action.payload;
+      state.world_name = action.payload;
+    },
+    setGuildMark(state, action: PayloadAction<string>) {
+      state.guild_mark = action.payload;
     },
   },
 });
@@ -51,4 +56,5 @@ export let {
   setCharacterLevel,
   setCharacterName,
   setCharacterWorldName,
+  setGuildMark
 } = searchInfoSlice.actions;

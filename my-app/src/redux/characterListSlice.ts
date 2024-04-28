@@ -4,21 +4,21 @@ import { SearchInfoState } from "./searchInfoSlice";
 export interface CharacterListState {
   [key: string]: {
     // 키값으로 캐릭터 닉네임을 사용
-    class: string;
-    guildName: string | undefined;
-    image: string;
-    level: number;
-    worldName: string;
+    character_class: string;
+    character_guild_name: string | undefined;
+    character_image: string;
+    character_level: number;
+    world_name: string;
   };
 }
 
 const initialState: CharacterListState = {
   nickname: {
-    class: "",
-    guildName: undefined,
-    image: "",
-    level: 0,
-    worldName: "",
+    character_class: "",
+    character_guild_name: undefined,
+    character_image: "",
+    character_level: 0,
+    world_name: "",
   },
 };
 
@@ -29,12 +29,12 @@ export const CharacterListSlice = createSlice({
     addCharacterList(state, action: PayloadAction<SearchInfoState>) {
       state.nickname && delete state.nickname;
 
-      state[action.payload.name] = {
-        class: action.payload.class,
-        guildName: action.payload.guildName,
-        image: action.payload.image,
-        level: action.payload.level,
-        worldName: action.payload.worldName,
+      state[action.payload.character_name] = {
+        character_class: action.payload.character_class,
+        character_guild_name: action.payload.character_guild_name,
+        character_image: action.payload.character_image,
+        character_level: action.payload.character_level,
+        world_name: action.payload.world_name,
       };
     },
     removeCharacterList(state, action: PayloadAction<string>) {

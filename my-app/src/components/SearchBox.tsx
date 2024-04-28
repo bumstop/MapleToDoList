@@ -1,4 +1,3 @@
-import axios, { AxiosError } from "axios";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -9,72 +8,43 @@ import {
   setCharacterLevel,
   setCharacterName,
   setCharacterWorldName,
+  setGuildMark,
 } from "../redux/searchInfoSlice";
 import { modalOpen } from "../redux/modalStateSlice";
+import { getCharacterBasicInfo, getGuildId } from "../func/nexonOpenApi";
+import { returnGuildMark } from "../func/returnGuildMark";
 
-const NEXONOPEN_API_SERVER = "https://open.api.nexon.com";
-const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY;
+const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY!;
 
 export function SearchBox() {
   const dispatch = useDispatch();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  const getOcid = async (nickname: string): Promise<string | undefined> => {
-    try {
-      const response = await axios({
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "x-nxopen-api-key": NEXONOPEN_API_KEY,
-        },
-        url:
-          NEXONOPEN_API_SERVER + "/maplestory/v1/id?character_name=" + nickname,
-      });
-      const ocid = response.data.ocid;
-      console.log("ocid:", ocid);
-      return ocid;
-    } catch (error) {
-      if (error instanceof AxiosError) {
-        // response 가 AxiosError 의 속성이기 때문에 narrowing 해줌
-        console.log("Error status:", error.response?.status);
-        if (error.response?.status === 400)
-          alert("닉네임이 존재하지 않습니다.");
-      }
-      return undefined;
-    }
-  };
-
-  const getCharacterBasicInfo = async (str: string) => {
-    const nickname = str.trim(); // 공백 제거
-    if (!nickname) return; // 입력값이 없을 경우 함수를 빠져나옴
-    
-    const ocid = await getOcid(nickname);
-    if (!ocid) return; // undefined일 경우 함수 빠져나옴
-
-    try {
-      const response = await axios({
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          "x-nxopen-api-key": NEXONOPEN_API_KEY,
-        },
-        url:
-          NEXONOPEN_API_SERVER + "/maplestory/v1/character/basic?ocid=" + ocid,
-      });
-      console.log(response.data);
-      
+  const search = async (searchValue: string) => {
+    const characterBasicInfo = await getCharacterBasicInfo(searchValue);
+    if (characterBasicInfo) {
       // 검색한 캐릭터 기본 정보 저장
-      dispatch(setCharacterClass(response.data.character_class));
-      dispatch(setCharacterGuildName(response.data.character_guild_name));
-      dispatch(setCharacterImage(response.data.character_image));
-      dispatch(setCharacterLevel(response.data.character_level));
-      dispatch(setCharacterName(response.data.character_name));
-      dispatch(setCharacterWorldName(response.data.world_name));
+      dispatch(setCharacterClass(characterBasicInfo.character_class));
+      dispatch(setCharacterGuildName(characterBasicInfo.character_guild_name));
+      dispatch(setCharacterImage(characterBasicInfo.character_image));
+      dispatch(setCharacterLevel(characterBasicInfo.character_level));
+      dispatch(setCharacterName(characterBasicInfo.character_name));
+      dispatch(setCharacterWorldName(characterBasicInfo.world_name));
+
+      // 길드 아이디 불러옴
+      const guildId = await getGuildId(
+        characterBasicInfo.character_guild_name,
+        characterBasicInfo.world_name
+      );
+
+      if (guildId) {
+        const guildMark = await returnGuildMark(guildId);
+
+        if (guildMark) dispatch(setGuildMark(guildMark));
+      }
 
       // 캐릭터 카드가 있는 모달창 오픈
       dispatch(modalOpen());
-    } catch (error) {
-      console.log("Error:", error);
     }
   };
 
@@ -86,14 +56,14 @@ export function SearchBox() {
         placeholder="캐릭터 검색"
         onKeyDown={(e) => {
           if (e.key === "Enter" && searchInputRef.current) {
-            getCharacterBasicInfo(searchInputRef.current.value);
+            search(searchInputRef.current.value);
           }
         }}
       />
       <SearchButton
         onClick={() => {
           if (searchInputRef.current) {
-            getCharacterBasicInfo(searchInputRef.current.value);
+            search(searchInputRef.current.value);
           }
         }}
       ></SearchButton>

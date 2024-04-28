@@ -8,27 +8,31 @@ import { returnWorldIcon } from "../func/returnWorldIcon";
 export function CharacterCard() {
   const dispatch = useDispatch();
   const characterImage = useSelector(
-    (state: RootState) => state.searchInfo.image
+    (state: RootState) => state.searchInfo.character_image
   );
   const searchCharacterClass = useSelector(
-    (state: RootState) => state.searchInfo.class
+    (state: RootState) => state.searchInfo.character_class
   );
   const characterGuildName = useSelector(
-    (state: RootState) => state.searchInfo.guildName
+    (state: RootState) => state.searchInfo.character_guild_name
   );
   const characterLevel = useSelector(
-    (state: RootState) => state.searchInfo.level
+    (state: RootState) => state.searchInfo.character_level
   );
   const characterName = useSelector(
-    (state: RootState) => state.searchInfo.name
+    (state: RootState) => state.searchInfo.character_name
   );
   const characterWorldName = useSelector(
-    (state: RootState) => state.searchInfo.worldName
+    (state: RootState) => state.searchInfo.world_name
+  );
+  const GuildMark = useSelector(
+    (state: RootState) => state.searchInfo.guild_mark
   );
   const CharacterList = useSelector((state: RootState) => state.CharacterList);
 
   useEffect(() => {
     console.log("리스트에 저장된 캐릭터 정보:", CharacterList);
+    console.log(GuildMark);
   }, [CharacterList]);
 
   return (
@@ -41,12 +45,13 @@ export function CharacterCard() {
         onClick={() => {
           dispatch(
             addCharacterList({
-              class: searchCharacterClass,
-              guildName: characterGuildName,
-              image: characterImage,
-              level: characterLevel,
-              name: characterName,
-              worldName: characterWorldName,
+              character_class: searchCharacterClass,
+              character_guild_name: characterGuildName,
+              character_image: characterImage,
+              character_level: characterLevel,
+              character_name: characterName,
+              world_name: characterWorldName,
+              guild_mark: GuildMark,
             })
           );
         }}
@@ -76,7 +81,12 @@ export function CharacterCard() {
         {/* <InfoBackgroundDiv /> */}
         <CharacterClassDiv>{searchCharacterClass}</CharacterClassDiv>
         <CharacterGuildNameDiv>
-          {characterGuildName && "길드 " + characterGuildName}
+          {characterGuildName && (
+            <>
+              <GuildMarkImg src={GuildMark} />
+              <>{characterGuildName}</>
+            </>
+          )}
         </CharacterGuildNameDiv>
         <InfoBottomDiv>
           <CharacterNameDiv>{characterName}</CharacterNameDiv>
@@ -127,13 +137,23 @@ const CharacterImageDiv = styled.img`
   width: 100%;
 `;
 const CharacterClassDiv = styled.div`
+  margin-bottom: 3px;
   font-size: 14px;
   font-weight: 600;
 `;
 const CharacterGuildNameDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 18px;
   font-size: 14px;
   font-weight: 900;
 `;
+const GuildMarkImg = styled.img`
+  height: 100%;
+  margin-right: 4px;
+`;
+
 const CharacterWorldNameDiv = styled.div`
   position: absolute;
   display: flex;
