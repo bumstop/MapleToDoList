@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { RootState } from "../redux/store";
 import { addCharacterList } from "../redux/characterListSlice";
 import { useEffect } from "react";
+import { returnWorldIcon } from "../func/returnWorldIcon";
 
 export function CharacterCard() {
   const dispatch = useDispatch();
@@ -26,15 +27,16 @@ export function CharacterCard() {
   );
   const CharacterList = useSelector((state: RootState) => state.CharacterList);
 
-
-
   useEffect(() => {
     console.log("리스트에 저장된 캐릭터 정보:", CharacterList);
   }, [CharacterList]);
 
   return (
     <CharacterCardDiv>
-      <CharacterWorldNameDiv>{characterWorldName}</CharacterWorldNameDiv>
+      <CharacterWorldNameDiv>
+        <CharacterWorldIconImg src={returnWorldIcon(characterWorldName)} />
+        {characterWorldName}
+      </CharacterWorldNameDiv>
       <AddListBtn
         onClick={() => {
           dispatch(
@@ -132,12 +134,18 @@ const CharacterGuildNameDiv = styled.div`
   font-size: 14px;
   font-weight: 900;
 `;
-
 const CharacterWorldNameDiv = styled.div`
   position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 3px;
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
+`;
+const CharacterWorldIconImg = styled.img`
+  width: 14px;
+  height: 14px;
 `;
 const InfoBottomDiv = styled.div`
   position: absolute;
