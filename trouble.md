@@ -51,3 +51,27 @@ console.log(ocid);
 ```
 
 ![promiseawait_console](./trouble_image/promiseawait_console.png)
+
+# func > nexonOpenApi.ts , returnGuildMark.ts
+
+넥슨 api에서 길드마크 정보는, 길드마크 또는 커스텀길드마크 둘 중 하나다.
+
+```
+export const returnGuildMark = async (guildId: string) => {
+  const guildBasicInfo = await getGuildBasicInfo(guildId);
+
+  if (guildBasicInfo) {
+    if (guildBasicInfo.guild_mark) return guildBasicInfo.guild_mark;
+    else return "data:image/png;base64," + guildBasicInfo.guild_mark_custom;
+  }
+};
+```
+
+길드마크의 경우 일반적인 URL을 가지고 있다.
+
+**커스텀 길드마크의 경우 base64형식으로 인코딩된 문자열을 반환해준다.**
+
+이 문자열을 디코딩하면 이미지가되는데 `img` 태그의 `src` 속성안에 표시해주면 된다.
+
+- `data:image/png;base64,`  
+  데이터가 `png` 형식의 파일이라는 것을 표시해주고 base64 형식으로 디코딩하라는 뜻이다.

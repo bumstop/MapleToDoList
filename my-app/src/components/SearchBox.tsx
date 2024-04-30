@@ -14,8 +14,6 @@ import { modalOpen } from "../redux/modalStateSlice";
 import { getCharacterBasicInfo, getGuildId } from "../func/nexonOpenApi";
 import { returnGuildMark } from "../func/returnGuildMark";
 
-const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY!;
-
 export function SearchBox() {
   const dispatch = useDispatch();
   const searchInputRef = useRef<HTMLInputElement>(null);
