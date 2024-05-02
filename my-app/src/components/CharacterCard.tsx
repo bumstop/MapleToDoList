@@ -12,7 +12,7 @@ export function CharacterCard() {
   const dispatch = useDispatch();
   const searchInfo = useSelector((state: RootState) => state.searchInfo);
   const characterImage = searchInfo.character_image;
-  const searchCharacterClass = searchInfo.character_class;
+  const characterClass = searchInfo.character_class;
   const characterGuildName = searchInfo.character_guild_name;
   const characterLevel = searchInfo.character_level;
   const characterName = searchInfo.character_name;
@@ -39,7 +39,7 @@ export function CharacterCard() {
           if (!isListed) {
             dispatch(
               addCharacterList({
-                character_class: searchCharacterClass,
+                character_class: characterClass,
                 character_guild_name: characterGuildName,
                 character_image: characterImage,
                 character_level: characterLevel,
@@ -73,7 +73,7 @@ export function CharacterCard() {
       {/* 캐릭터 정보 */}
       <CharacterInfoSectionDiv>
         {/* <InfoBackgroundDiv /> */}
-        <CharacterClassDiv>{searchCharacterClass}</CharacterClassDiv>
+        <CharacterClassDiv>{characterClass}</CharacterClassDiv>
         <CharacterGuildNameDiv>
           {characterGuildName && (
             <>
@@ -158,9 +158,10 @@ const CharacterWorldNameDiv = styled.div`
   display: flex;
   align-items: center;
   gap: 3px;
-  padding: 3px 8px;
+  padding: 5px 8px;
   border: 3px solid rgba(255, 255, 255, 0.25);
   border-radius: 20px;
+  line-height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   font-size: 13px;

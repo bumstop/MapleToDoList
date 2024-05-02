@@ -1,4 +1,4 @@
-import { ToDoList } from "../components/TodoList";
+import { ToDoList } from "../components/ToDoList";
 
 
 export function Home() {
