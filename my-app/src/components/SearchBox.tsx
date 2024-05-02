@@ -18,6 +18,7 @@ export function SearchBox() {
   const dispatch = useDispatch();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  // 검색 과정
   const search = async (searchValue: string) => {
     const characterBasicInfo = await getCharacterBasicInfo(searchValue);
     if (characterBasicInfo) {
@@ -36,8 +37,10 @@ export function SearchBox() {
       );
 
       if (guildId) {
+        // 길드마크 불러옴
         const guildMark = await returnGuildMark(guildId);
 
+        // 길드 마크 저장
         if (guildMark) dispatch(setGuildMark(guildMark));
       }
 
