@@ -11,10 +11,6 @@ export function Modal() {
     (state: RootState) => state.modalState.isOpen
   );
 
-  useEffect(() => {
-    console.log("modalIsOpen:", modalIsOpen);
-  }, [modalIsOpen]);
-
   return (
     <ModalDiv
       $isOpen={modalIsOpen}
