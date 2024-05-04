@@ -15,8 +15,8 @@ const AppBody = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
-  height: 80%;
+  width: 90%;
+  min-height: 95%;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;

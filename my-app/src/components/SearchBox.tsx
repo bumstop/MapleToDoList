@@ -17,7 +17,7 @@ import { returnGuildMark } from "../func/returnGuildMark";
 export function SearchBox() {
   const dispatch = useDispatch();
   const searchInputRef = useRef<HTMLInputElement>(null);
-
+  
   // 검색 과정
   const search = async (searchValue: string) => {
     const characterBasicInfo = await getCharacterBasicInfo(searchValue);

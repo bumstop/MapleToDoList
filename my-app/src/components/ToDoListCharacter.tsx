@@ -54,10 +54,24 @@ const ToDoListCharacterDiv = styled.div`
   flex-direction: column;
   align-items: center;
 
-	& > .info-wrap {
-		display: flex;
-		gap: 5px;
-	}
+  & {
+    .name {
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .level {
+      font-size: 13.5px;
+      font-weight: 900;
+    }
+    .class {
+      font-size: 13.5px;
+      font-weight: 900;
+    }
+    .info-wrap {
+      display: flex;
+      gap: 5px;
+    }
+  }
 `;
 
 const CharacterWorldIconImg = styled.img`

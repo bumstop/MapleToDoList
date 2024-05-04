@@ -4,6 +4,7 @@ import { SearchInfoState } from "../redux/searchInfoSlice";
 const NEXONOPEN_API_KEY = process.env.REACT_APP_NEXONOPEN_API_KEY!;
 
 const getOcid = async (nickname: string): Promise<string | undefined> => {
+  console.log(NEXONOPEN_API_KEY);
   try {
     const response = await axios({
       method: "GET",

@@ -3,6 +3,7 @@ import { RootState } from "../redux/store";
 import { ToDoListCharacter } from "./ToDoListCharacter";
 import styled from "styled-components";
 import React from "react";
+import { ToDoListToDos } from "./ToDoListToDos";
 
 export function ToDoList() {
   const CharacterList = useSelector((state: RootState) => state.CharacterList);
@@ -14,13 +15,14 @@ export function ToDoList() {
         <div
           key={key}
           style={{
-            width: "200px",
+            width: "300px",
           }}
         >
           <ToDoListCharacter
             characterListKey={key}
             characterListValue={CharacterList[key]}
           />
+          <ToDoListToDos />
         </div>
       ))}
     </ToDoListDiv>
