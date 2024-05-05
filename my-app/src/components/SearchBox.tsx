@@ -72,7 +72,7 @@ export function SearchBox() {
   );
 }
 
-const SearchBoxDiv = styled.div`
+export const SearchBoxDiv = styled.div`
   position: relative;
   width: 200px;
   height: 30px;

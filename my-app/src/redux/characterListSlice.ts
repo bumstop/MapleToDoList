@@ -5,7 +5,7 @@ export interface CharacterListState {
   [key: string]: {
     // 키값으로 캐릭터 닉네임을 사용
     character_class: string;
-    character_guild_name: string | undefined;
+    character_guild_name: string;
     character_image: string;
     character_level: number;
     world_name: string;
@@ -16,7 +16,7 @@ export interface CharacterListState {
 const initialState: CharacterListState = {
   nickname: {
     character_class: "",
-    character_guild_name: undefined,
+    character_guild_name: "",
     character_image: "",
     character_level: 0,
     world_name: "",
@@ -24,7 +24,7 @@ const initialState: CharacterListState = {
   },
 };
 
-export const CharacterListSlice = createSlice({
+export const characterListSlice = createSlice({
   name: "CharacterList",
   initialState: initialState,
   reducers: {
@@ -47,4 +47,4 @@ export const CharacterListSlice = createSlice({
 });
 
 export let { addCharacterList, removeCharacterList } =
-  CharacterListSlice.actions;
+  characterListSlice.actions;

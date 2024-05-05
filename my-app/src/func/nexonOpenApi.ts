@@ -51,7 +51,7 @@ export const getCharacterBasicInfo = async (
       },
     });
 
-    return response.data;
+     return response.data;
   } catch (error) {
     console.log("Error:", error);
   }
