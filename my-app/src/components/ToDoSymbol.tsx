@@ -6,52 +6,66 @@ export function ToDoSymbol() {
     <ToDoSymbolDiv>
       <div className="daily">
         <div>아케인 일일퀘스트</div>
-        <div className="acane-symbol">
-          {symbol.daily.acane.map((v) => (
-            <div className="symbol-box" key={v.text}>
-              <img src={process.env.PUBLIC_URL + v.image} />
-            </div>
-          ))}
-        </div>
+        <ContentsSection data={symbol.daily.acane} />
+
         <div>그란디스 일일퀘스트</div>
-        <div className="grandis-symbol">
-          {symbol.daily.grandis.map((v) => (
-            <div className="symbol-box" key={v.text}>
-              <img src={process.env.PUBLIC_URL + v.image} />
-            </div>
-          ))}
-        </div>
+        <ContentsSection data={symbol.daily.grandis} />
       </div>
-      <div className="weekly"></div>
+      <div className="weekly">
+        <div>아케인 주간컨텐츠</div>
+        <ContentsSection data={symbol.weekly.acane} />
+      </div>
     </ToDoSymbolDiv>
   );
 }
 
 const ToDoSymbolDiv = styled.div`
-  font-family: "Maplestory", sans-serif;
+  padding: 10px;
+`;
 
-  & .acane-symbol,
-  .grandis-symbol {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 5px;
+interface DataType {
+  data: { text: string; image: string }[];
+}
+
+function ContentsSection({ data }: DataType) {
+  return (
+    <ContentsSectionDiv>
+      {data.map((v) => (
+        <ContentsBoxDiv key={v.text}>
+          <img src={process.env.PUBLIC_URL + v.image} />
+          <div className="text">{v.text}</div>
+        </ContentsBoxDiv>
+      ))}
+    </ContentsSectionDiv>
+  );
+}
+
+const ContentsSectionDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px 0 30px;
+`;
+
+const ContentsBoxDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #fff;
+
+  &:hover {
+    background-color: #e5e7eb;
   }
-
-  & img {
+  img {
     width: 38px;
     height: 38px;
   }
-
-  & .symbol-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    border: 1px solid #e5e7eb;
-    border-radius: 0.5rem;
-    background-color: #fff;
-  }
-  & .symbol-box:hover {
-    background-color: #e5e7eb;
+  .text {
+    flex-grow: 1;
+    flex-basis: 100%;
+    text-align: center;
   }
 `;

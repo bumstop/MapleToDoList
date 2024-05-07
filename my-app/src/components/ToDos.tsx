@@ -4,10 +4,12 @@ import { ToDoSymbol } from "./ToDoSymbol";
 export function ToDos() {
   return (
     <ToDosDiv>
-			<ToDoSymbol />
-      
+      <ToDoSymbol />
     </ToDosDiv>
   );
 }
 
-const ToDosDiv = styled.div``;
+const ToDosDiv = styled.div`
+  font-family: "Maplestory", sans-serif;
+  font-weight: bold;
+`;

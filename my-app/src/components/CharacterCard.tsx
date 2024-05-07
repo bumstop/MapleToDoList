@@ -5,7 +5,7 @@ import {
   addCharacterList,
   removeCharacterList,
 } from "../redux/characterListSlice";
-import { useEffect } from "react";
+
 import { returnWorldIcon } from "../func/returnWorldIcon";
 import { SearchInfoState } from "../redux/searchInfoSlice";
 
@@ -19,12 +19,6 @@ export function CharacterCard(props: SearchInfoState) {
     guild_mark,
     world_name,
   } = props;
-
-  const characterList = useSelector((state: RootState) => state.characterList);
-
-  useEffect(() => {
-    console.log("리스트에 저장된 캐릭터 정보:", characterList);
-  }, [characterList]);
 
   return (
     <CharacterCardDiv>

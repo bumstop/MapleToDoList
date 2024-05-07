@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import "./fonts.css";
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
@@ -16,7 +17,8 @@ ${reset}
 		vertical-align: baseline;
 	}
 	body {
-		font-family: "Noto Sans KR", sans-serif;
+		font-family: "Noto Sans KR", sans-serif; 
+		font-weight: 400;
 		font-size: 1.6rem;
 		letter-spacing: -.5px;
 	}
