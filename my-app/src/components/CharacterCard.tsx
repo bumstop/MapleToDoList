@@ -71,7 +71,7 @@ function ToggleListBtn(props: { info: SearchInfoState }) {
   const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const isListed = characterList[character_name] ? true : false; // 캐릭터가 리스트에 추가되어 있는지
-  
+
   return (
     <ToggleListButton
       $isListed={isListed}
@@ -110,12 +110,14 @@ function ToggleListBtn(props: { info: SearchInfoState }) {
 }
 
 const CharacterCardDiv = styled.div`
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   width: 200px;
   height: 300px;
   padding: 10px;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   background: no-repeat center/cover
     url(${process.env.PUBLIC_URL}/image/xmas_03_2560x1440.jpg);
 
@@ -126,7 +128,7 @@ const CharacterCardDiv = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    border-radius: 0.5rem;
+    border-radius: 1rem;
     background: #000;
     opacity: 0.5;
   }
@@ -146,7 +148,6 @@ const CharacterCardDiv = styled.div`
       background-color: rgba(0, 0, 0, 0.7);
       color: #fff;
       font-size: 13px;
-      font-weight: 600;
 
       img {
         width: 14px;
@@ -159,7 +160,7 @@ const CharacterCardDiv = styled.div`
       left: 50%;
       transform: translateX(-50%);
       width: 85%;
-      height: 70%;
+      height: 67.5%;
 
       img {
         position: absolute;
@@ -209,6 +210,59 @@ const CharacterCardDiv = styled.div`
           font-size: 20px;
           font-weight: 900;
           text-align: end;
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+  .charactercard-wrap > & {
+    width: 120px;
+    height: 180px;
+    padding: 5px;
+
+    .worldname-wrap {
+      top: 5px;
+      left: 5px;
+      padding: 4px 6px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 20px;
+      font-size: 10px;
+
+      img {
+        width: 11px;
+        height: 11px;
+      }
+    }
+    .info-wrap {
+      .class {
+        margin-bottom: 3px;
+        font-size: 10px;
+        font-weight: 400;
+      }
+
+      .guildname-wrap {
+        height: 15px;
+        font-size: 12px;
+        font-weight: 500;
+
+        img {
+          height: 100%;
+          margin-right: 3px;
+        }
+      }
+
+      .info-bottom {
+        .level {
+          font-size: 11px;
+          font-weight: 500;
+          text-align: end;
+        }
+
+        .name {
+          font-size: 15px;
+          font-weight: 600;
+          text-align: end;
         }
       }
     }
@@ -219,7 +273,6 @@ const ToggleListButton = styled.div<{ $isListed: boolean }>`
   position: absolute;
   top: 10px;
   right: 10px;
-  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -230,6 +283,10 @@ const ToggleListButton = styled.div<{ $isListed: boolean }>`
   cursor: pointer;
   z-index: 1;
 
+  & > svg {
+    width: 22px;
+    height: 22px;
+  }
   & > svg > path {
     fill: ${(props: { $isListed: boolean }) =>
       props.$isListed ? "#ffff17" : "#fff"};
@@ -237,5 +294,20 @@ const ToggleListButton = styled.div<{ $isListed: boolean }>`
 
   &:hover > svg > path {
     fill: #dddd32;
+  }
+
+  .charactercard-wrap & {
+    top: 5px;
+    right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 `;

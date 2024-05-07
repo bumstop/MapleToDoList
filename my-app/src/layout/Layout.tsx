@@ -24,33 +24,26 @@ const AppBackground = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 0.5%;
-  width: 100vw;
-  height: 100vh;
+  gap: 10px;
+  min-width: 100%;
+  min-height: 100vh;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background-color: #f0f2f5;
 `;
 
 const AppBody = styled.div`
-
-
-  width: 68%;
-  height: 98%;
+  width: 860px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
   padding: 10px;
-  box-sizing: border-box;
 `;
 
 const AppAside = styled.div`
-
-
-  width: 30%;
-  height: 98%;
+  width: 390px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
   padding: 10px;
-  box-sizing: border-box;
 `;

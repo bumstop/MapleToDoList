@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { CharacterCard } from "./CharacterCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { useEffect } from "react";
 import { modalClose } from "../redux/modalStateSlice";
 
 export function Modal() {
@@ -44,8 +43,10 @@ export function Modal() {
 
 const ModalDiv = styled.div<{ $isOpen: boolean }>`
   position: absolute;
-  width: 100vw;
-  height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   backdrop-filter: blur(3px);
   z-index: 99;
   display: ${(props: { $isOpen: boolean }) =>

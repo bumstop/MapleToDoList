@@ -42,6 +42,9 @@ const CharacterListDiv = styled.div`
       right: 0;
     }
     .charactercard-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
       padding-top: 40px;
     }
   }
