@@ -26,7 +26,7 @@ export const symbol = {
         image: "./image/acane-symbol-6.webp",
       },
     ],
-    그란디스: [
+    grandis: [
       {
         text: "세르니움",
         image: "./image/asentic-symbol-1.webp",

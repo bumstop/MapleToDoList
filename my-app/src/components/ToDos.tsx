@@ -3,15 +3,11 @@ import { ToDoSymbol } from "./ToDoSymbol";
 
 export function ToDos() {
   return (
-    <ToDoListToDosDiv>
+    <ToDosDiv>
 			<ToDoSymbol />
-      <BossToDosDiv></BossToDosDiv>
-      <ContentsToDosDiv></ContentsToDosDiv>
-    </ToDoListToDosDiv>
+      
+    </ToDosDiv>
   );
 }
 
-const ToDoListToDosDiv = styled.div``;
-
-const BossToDosDiv = styled.div``;
-const ContentsToDosDiv = styled.div``;
+const ToDosDiv = styled.div``;

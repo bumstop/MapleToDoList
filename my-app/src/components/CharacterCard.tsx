@@ -40,16 +40,16 @@ export function CharacterCard(props: SearchInfoState) {
       {/* 캐릭터 정보 */}
       <div className="info-wrap">
         <div className="class">{character_class}</div>
-        <div className="guildname-wrap">
-          {character_guild_name && (
-            <>
-              <img src={guild_mark} />
-              <span>{character_guild_name}</span>
-            </>
-          )}
-        </div>
+        <div className="level">Lv. {character_level}</div>
         <div className="info-bottom">
-          <div className="level">Lv. {character_level}</div>
+          <div className="guildname-wrap">
+            {character_guild_name && (
+              <>
+                <img src={guild_mark} />
+                <span>{character_guild_name}</span>
+              </>
+            )}
+          </div>
           <div className="name">{character_name}</div>
         </div>
       </div>
@@ -118,8 +118,8 @@ const CharacterCardDiv = styled.div`
   height: 300px;
   padding: 10px;
   border-radius: 1rem;
-  background: no-repeat center/cover
-    url(${process.env.PUBLIC_URL}/image/xmas_03_2560x1440.jpg);
+  border: 1px solid #f0f2f5;
+  box-shadow: 0 1px 6px #d0d1d3;
 
   &::before {
     content: "";
@@ -127,10 +127,12 @@ const CharacterCardDiv = styled.div`
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    border-radius: 1rem;
-    background: #000;
-    opacity: 0.5;
+    height: 59%;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    background: #000 no-repeat center/cover
+      url(${process.env.PUBLIC_URL}/image/xmas_03_2560x1440.jpg);
+    opacity: 0.6;
   }
 
   & {
@@ -142,12 +144,13 @@ const CharacterCardDiv = styled.div`
       align-items: center;
       gap: 3px;
       padding: 5px 8px;
-      border: 3px solid rgba(255, 255, 255, 0.25);
-      border-radius: 20px;
+      border-radius: 2rem;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #000;
       line-height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      font-size: 13px;
+      font-size: 1.3rem;
+      font-weight: 600;
 
       img {
         width: 14px;
@@ -173,20 +176,30 @@ const CharacterCardDiv = styled.div`
       position: relative;
       width: 100%;
       height: 30%;
-      color: #fff;
+      color: #000;
 
       .class {
-        margin-bottom: 3px;
-        font-size: 14px;
+        margin-bottom: 5px;
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
+      .level {
+        font-size: 1.6rem;
         font-weight: 600;
       }
 
+      .info-bottom {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
       .guildname-wrap {
         display: flex;
+        justify-content: end;
         align-items: center;
         width: 100%;
         height: 18px;
-        font-size: 14px;
+        font-size: 1.5rem;
         font-weight: 900;
 
         img {
@@ -195,23 +208,11 @@ const CharacterCardDiv = styled.div`
         }
       }
 
-      .info-bottom {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-
-        .level {
-          font-size: 14px;
-          font-weight: 600;
-          text-align: end;
-        }
-
-        .name {
-          font-size: 20px;
-          font-weight: 900;
-          text-align: end;
-          margin-top: 5px;
-        }
+      .name {
+        font-size: 2rem;
+        font-weight: 900;
+        text-align: end;
+        margin-top: 5px;
       }
     }
   }
@@ -225,9 +226,9 @@ const CharacterCardDiv = styled.div`
       top: 5px;
       left: 5px;
       padding: 4px 6px;
-      border: 2px solid rgba(255, 255, 255, 0.25);
       border-radius: 20px;
-      font-size: 10px;
+      font-size: 1rem;
+      font-weight: 600;
 
       img {
         width: 11px;
@@ -237,13 +238,20 @@ const CharacterCardDiv = styled.div`
     .info-wrap {
       .class {
         margin-bottom: 3px;
-        font-size: 10px;
+        font-size: 1rem;
         font-weight: 400;
       }
-
+      .level {
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+      .info-bottom {
+        bottom: 3px;
+        right: 3px;
+      }
       .guildname-wrap {
         height: 15px;
-        font-size: 12px;
+        font-size: 1.2rem;
         font-weight: 500;
 
         img {
@@ -251,19 +259,11 @@ const CharacterCardDiv = styled.div`
           margin-right: 3px;
         }
       }
-
-      .info-bottom {
-        .level {
-          font-size: 11px;
-          font-weight: 500;
-          text-align: end;
-        }
-
-        .name {
-          font-size: 15px;
-          font-weight: 600;
-          text-align: end;
-        }
+      .name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: end;
+        margin-top: 3px;
       }
     }
   }
@@ -279,7 +279,7 @@ const ToggleListButton = styled.div<{ $isListed: boolean }>`
   width: 30px;
   height: 30px;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   z-index: 1;
 

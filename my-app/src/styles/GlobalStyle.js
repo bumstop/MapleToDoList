@@ -16,7 +16,7 @@ ${reset}
 		vertical-align: baseline;
 	}
 	body {
-		font-family: "Noto Sans KR";
+		font-family: "Noto Sans KR", sans-serif;
 		font-size: 1.6rem;
 		letter-spacing: -.5px;
 	}

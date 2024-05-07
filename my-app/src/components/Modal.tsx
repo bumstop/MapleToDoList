@@ -47,7 +47,7 @@ const ModalDiv = styled.div<{ $isOpen: boolean }>`
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(5px);
   z-index: 99;
   display: ${(props: { $isOpen: boolean }) =>
     props.$isOpen ? "block" : "none"};

@@ -61,3 +61,17 @@
   src: url(../assets/fonts/NotoSansKR-Black.ttf) format("ttf"),
     url(../assets/fonts/NotoSansKR-Black.ttf) format("ttf");
 }
+@font-face {
+  font-family: "Maplestory";
+  font-weight: 600;
+  font-display: swap;
+  src: url(../assets/fonts/Maplestory-Bold.ttf) format("ttf"),
+    url(../assets/fonts/Maplestory-Bold.ttf) format("ttf");
+}
+@font-face {
+  font-family: "Maplestory";
+  font-weight: 400;
+  font-display: swap;
+  src: url(../assets/fonts/Maplestory-Light.ttf) format("ttf"),
+    url(../assets/fonts/Maplestory-Light.ttf) format("ttf");
+}
