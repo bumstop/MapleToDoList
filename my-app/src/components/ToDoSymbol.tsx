@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { symbol } from "../data/symbol";
-
 export function ToDoSymbol() {
   return (
     <ToDoSymbolDiv>
+      <h1 className="heading">심볼</h1>
       <div className="daily">
         <div>아케인 일일퀘스트</div>
         <ContentsSection data={symbol.daily.acane} />
-
         <div>그란디스 일일퀘스트</div>
         <ContentsSection data={symbol.daily.grandis} />
       </div>
@@ -21,6 +20,14 @@ export function ToDoSymbol() {
 
 const ToDoSymbolDiv = styled.div`
   padding: 10px;
+
+  & {
+    .heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+  }
 `;
 
 interface DataType {
@@ -32,7 +39,7 @@ function ContentsSection({ data }: DataType) {
     <ContentsSectionDiv>
       {data.map((v) => (
         <ContentsBoxDiv key={v.text}>
-          <img src={process.env.PUBLIC_URL + v.image} />
+          <img src={v.image} />
           <div className="text">{v.text}</div>
         </ContentsBoxDiv>
       ))}
