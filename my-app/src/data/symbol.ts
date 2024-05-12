@@ -1,5 +1,23 @@
-import { acaneSymbol1, acaneSymbol2, acaneSymbol3, acaneSymbol4, acaneSymbol5, acaneSymbol6, asenticSymbol1, asenticSymbol2, asenticSymbol3, asenticSymbol4, asenticSymbol5, asenticSymbol6, dreamBreaker, enheimDefense, erdaSpectrum, hungryMuto, protectEsfera, spiritSavior } from "../assets/images";
-
+import {
+  acaneSymbol1,
+  acaneSymbol2,
+  acaneSymbol3,
+  acaneSymbol4,
+  acaneSymbol5,
+  acaneSymbol6,
+  asenticSymbol1,
+  asenticSymbol2,
+  asenticSymbol3,
+  asenticSymbol4,
+  asenticSymbol5,
+  asenticSymbol6,
+  dreamBreaker,
+  enheimDefense,
+  erdaSpectrum,
+  hungryMuto,
+  protectEsfera,
+  spiritSavior,
+} from "../assets/images";
 
 export const symbol = {
   daily: {

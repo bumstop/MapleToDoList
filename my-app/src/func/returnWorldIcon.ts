@@ -1,30 +1,45 @@
+import {
+  worldArcane,
+  worldBera,
+  worldCroa,
+  worldElysium,
+  worldEnosis,
+  worldLuna,
+  worldNova,
+  worldReboot,
+  worldRed,
+  worldScania,
+  worldUnion,
+  worldZenith,
+} from "../assets/images";
+
 export function returnWorldIcon(characterWorldName: string) {
   switch (characterWorldName) {
     case "레드":
-      return `${process.env.PUBLIC_URL}/image/ico_world_red.gif`;
+      return worldRed;
     case "이노시스":
-      return `${process.env.PUBLIC_URL}/image/ico_world_enosis.png`;
+      return worldEnosis;
     case "유니온":
-      return `${process.env.PUBLIC_URL}/image/ico_world_union.png`;
+      return worldUnion;
     case "스카니아":
-      return `${process.env.PUBLIC_URL}/image/ico_world_scania.gif`;
+      return worldScania;
     case "루나":
-      return `${process.env.PUBLIC_URL}/image/ico_world_luna.gif`;
+      return worldLuna;
     case "제니스":
-      return `${process.env.PUBLIC_URL}/image/ico_world_zenith.gif`;
+      return worldZenith;
     case "크로아":
-      return `${process.env.PUBLIC_URL}/image/ico_world_croa.gif`;
+      return worldCroa;
     case "베라":
-      return `${process.env.PUBLIC_URL}/image/ico_world_bera.gif`;
+      return worldBera;
     case "엘리시움":
-      return `${process.env.PUBLIC_URL}/image/ico_world_elysium.gif`;
+      return worldElysium;
     case "아케인":
-      return `${process.env.PUBLIC_URL}/image/ico_world_arcane.gif`;
+      return worldArcane;
     case "노바":
-      return `${process.env.PUBLIC_URL}/image/ico_world_nova.gif`;
+      return worldNova;
     case "리부트":
-      return `${process.env.PUBLIC_URL}/image/ico_world_reboot.png`;
+      return worldReboot;
     case "리부트2":
-      return `${process.env.PUBLIC_URL}/image/ico_world_reboot.png`;
+      return worldReboot;
   }
 }
