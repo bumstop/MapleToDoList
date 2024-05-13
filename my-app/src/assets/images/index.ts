@@ -1,3 +1,6 @@
+// 캐릭터 카드 배경
+export {default as xmas } from './xmas_03_2560x1440.jpg'
+
 // 심볼 이미지
 export { default as acaneSymbol1 } from "./acane-symbol-1.webp";
 export { default as acaneSymbol2 } from "./acane-symbol-2.webp";

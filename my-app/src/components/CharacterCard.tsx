@@ -8,6 +8,7 @@ import {
 
 import { returnWorldIcon } from "../func/returnWorldIcon";
 import { SearchInfoState } from "../redux/searchInfoSlice";
+import { xmas } from "../assets/images";
 
 export function CharacterCard(props: SearchInfoState) {
   const {
@@ -124,8 +125,7 @@ const CharacterCardDiv = styled.div`
     height: 59%;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    background: #000 no-repeat center/cover
-      url(${process.env.PUBLIC_URL}/image/xmas_03_2560x1440.jpg);
+    background: #000 no-repeat center/cover url(${xmas});
     opacity: 0.6;
   }
 
