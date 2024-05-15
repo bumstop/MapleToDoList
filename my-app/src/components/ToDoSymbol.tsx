@@ -39,7 +39,9 @@ function ContentsSection({ data }: DataType) {
     <ContentsSectionDiv>
       {data.map((v) => (
         <ContentsBoxDiv key={v.text}>
-          <img src={v.image} />
+          <div className="img">
+            <img src={v.image} />
+          </div>
           <div className="text">{v.text}</div>
         </ContentsBoxDiv>
       ))}
@@ -62,17 +64,21 @@ const ContentsBoxDiv = styled.div`
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   background-color: #fff;
+  cursor: pointer;
 
   &:hover {
     background-color: #e5e7eb;
   }
+  .img {
+    width: 44px;
+    height: 44px;
+  }
   img {
-    width: 38px;
-    height: 38px;
+    width: 100%;
+    height: 100%;
   }
   .text {
     flex-grow: 1;
-    flex-basis: 100%;
     text-align: center;
   }
 `;

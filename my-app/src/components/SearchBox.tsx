@@ -62,7 +62,7 @@ export function SearchBox() {
         }}
       />
       <SearchButton
-        onClick={() => {
+        onClick={(e) => {
           if (searchInputRef.current) {
             search(searchInputRef.current.value);
           }
@@ -80,7 +80,6 @@ export const SearchBoxDiv = styled.div`
   background-color: #eee;
 `;
 const CharacterSearchInput = styled.input`
-  box-sizing: border-box;
   width: 100%;
   height: 100%;
   padding-left: 12px;
@@ -88,6 +87,7 @@ const CharacterSearchInput = styled.input`
   outline: none;
   border: none;
   background-color: transparent;
+  font-family: 'Maplestory';
 `;
 const SearchButton = styled.button`
   position: absolute;
