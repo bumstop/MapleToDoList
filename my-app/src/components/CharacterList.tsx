@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { SearchBox } from "./SearchBox";
 import { CharacterCard } from "./CharacterCard";
-import { toDoOpen } from "../redux/characterListSlice";
+import { changeToDoOpenState } from "../redux/characterListSlice";
 
 export function CharacterList() {
   const dispatch = useDispatch();
@@ -21,14 +21,9 @@ export function CharacterList() {
     // 클릭한 대상이 토글버튼에 포함되지 않으면
     // (버튼의 자식요소 svg, fill이 클릭되면 toggleButton이 아니라고 인식함)
     if (!toggleButton.contains(target)) {
-      dispatch(toDoOpen(name)); // 투두 리스트에 해당 캐릭터의 투두 리스트를 뿌려줘야함.
+      dispatch(changeToDoOpenState(name)); // 투두 리스트에 해당 캐릭터의 투두 리스트를 뿌려줘야함.
     }
   }
-  useEffect(() => {
-    ListedCharacterName.map((key) => {
-      console.log(key, characterList[key].isToDoOpened);
-    });
-  }, [characterList]);
 
   return (
     <CharacterListDiv>

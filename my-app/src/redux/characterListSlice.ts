@@ -1,17 +1,54 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { SearchInfoState } from "./searchInfoSlice";
 
+interface ToDoStateType {
+  isListed: boolean;
+}
+
 export interface CharacterListState {
   [key: string]: {
     // 키값으로 캐릭터 닉네임을 사용
+
+    // 캐릭터 기본정보
     character_class: string;
     character_guild_name: string;
     character_image: string;
     character_level: number;
     world_name: string;
     guild_mark: string;
-
+    
+    // 투두리스트 오픈상태
     isToDoOpened: boolean;
+
+    // 투두리스트
+    toDoList: {
+      symbol: {
+        daily: {
+          acane: {
+            [key: string]: ToDoStateType;
+          };
+          grandis: {
+            [key: string]: ToDoStateType;
+          };
+        };
+        weekly: {
+          acane: {
+            [key: string]: ToDoStateType;
+          };
+        };
+      };
+      boss: {
+        daily: {
+          [key: string]: ToDoStateType;
+        };
+        weekly: {
+          [key: string]: ToDoStateType;
+        };
+        monthly: {
+          [key: string]: ToDoStateType;
+        };
+      };
+    };
   };
 }
 
@@ -49,8 +86,8 @@ export const characterListSlice = createSlice({
     removeCharacterList(state, action: PayloadAction<string>) {
       delete state[action.payload];
     },
-    toDoOpen(state, action: PayloadAction<string>) {
-      Object.keys(state).forEach((key) => { 
+    changeToDoOpenState(state, action: PayloadAction<string>) {
+      Object.keys(state).forEach((key) => {
         if (key !== action.payload) {
           state[key].isToDoOpened = false;
         }
@@ -60,5 +97,5 @@ export const characterListSlice = createSlice({
   },
 });
 
-export let { addCharacterList, removeCharacterList, toDoOpen } =
+export let { addCharacterList, removeCharacterList, changeToDoOpenState } =
   characterListSlice.actions;
