@@ -13,11 +13,12 @@ import {
 import { modalOpen } from "../redux/modalStateSlice";
 import { getCharacterBasicInfo, getGuildId } from "../func/nexonOpenApi";
 import { returnGuildMark } from "../func/returnGuildMark";
+import { searchIcon } from "../assets/images";
 
 export function SearchBox() {
   const dispatch = useDispatch();
   const searchInputRef = useRef<HTMLInputElement>(null);
-  
+
   // 검색 과정
   const search = async (searchValue: string) => {
     const characterBasicInfo = await getCharacterBasicInfo(searchValue);
@@ -87,7 +88,7 @@ const CharacterSearchInput = styled.input`
   outline: none;
   border: none;
   background-color: transparent;
-  font-family: 'Maplestory';
+  font-family: "Maplestory";
 `;
 const SearchButton = styled.button`
   position: absolute;
@@ -98,7 +99,6 @@ const SearchButton = styled.button`
   height: 20px;
   padding: 0;
   border: none;
-  background: no-repeat center/contain
-    url(${process.env.PUBLIC_URL}/image/magnifier_icon.png); // Copyright: Creative Stall Premium - Flaticon
+  background: no-repeat center/contain url(${searchIcon}); // Copyright: Creative Stall Premium - Flaticon
   cursor: pointer;
 `;

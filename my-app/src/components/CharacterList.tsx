@@ -1,22 +1,47 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { SearchBox } from "./SearchBox";
 import { CharacterCard } from "./CharacterCard";
+import { toDoOpen } from "../redux/characterListSlice";
 
 export function CharacterList() {
+  const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const ListedCharacterName = Object.keys(characterList);
+
+  function openToDoList(
+    e: React.MouseEvent<HTMLElement, MouseEvent>,
+    name: string
+  ) {
+    const target = e.target as HTMLElement;
+    const toggleButton = e.currentTarget.childNodes[0].childNodes[1];
+
+    // 클릭한 대상이 토글버튼에 포함되지 않으면
+    // (버튼의 자식요소 svg, fill이 클릭되면 toggleButton이 아니라고 인식함)
+    if (!toggleButton.contains(target)) {
+      dispatch(toDoOpen(name)); // 투두 리스트에 해당 캐릭터의 투두 리스트를 뿌려줘야함.
+    }
+  }
+  useEffect(() => {
+    ListedCharacterName.map((key) => {
+      console.log(key, characterList[key].isToDoOpened);
+    });
+  }, [characterList]);
 
   return (
     <CharacterListDiv>
       <div className="searchbox-wrap">
         <SearchBox />
       </div>
-      <div className="charactercard-wrap">
+      <div className="charactercard-container">
         {ListedCharacterName.map((key) => (
-          <React.Fragment key={key}>
+          <div
+            className="charactercard-wrap"
+            onClick={(e) => openToDoList(e, key)}
+            key={key}
+          >
             <CharacterCard
               character_class={characterList[key].character_class}
               character_guild_name={characterList[key].character_guild_name}
@@ -26,7 +51,7 @@ export function CharacterList() {
               world_name={characterList[key].world_name}
               guild_mark={characterList[key].guild_mark}
             />
-          </React.Fragment>
+          </div>
         ))}
       </div>
     </CharacterListDiv>
@@ -41,11 +66,14 @@ const CharacterListDiv = styled.div`
       top: 0;
       right: 0;
     }
-    .charactercard-wrap {
+    .charactercard-container {
       display: flex;
       flex-wrap: wrap;
       gap: 5px;
       padding-top: 40px;
+    }
+    .charactercard-wrap {
+      z-index: 1;
     }
   }
 `;

@@ -42,6 +42,7 @@ const AppBody = styled.div`
 
 const AppAside = styled.div`
   width: 390px;
+  min-width: 390px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;

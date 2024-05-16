@@ -52,7 +52,7 @@ export function CharacterCard(props: SearchInfoState) {
   );
 }
 
-function ToggleListBtn(props: { info: SearchInfoState }) {
+export function ToggleListBtn(props: { info: SearchInfoState }) {
   const {
     character_class,
     character_guild_name,
@@ -115,7 +115,8 @@ const CharacterCardDiv = styled.div`
   border-radius: 1rem;
   border: 1px solid #f0f2f5;
   box-shadow: 0 1px 6px #d0d1d3;
-
+  background-color: #fff;
+  
   &::before {
     content: "";
     position: absolute;
@@ -211,7 +212,7 @@ const CharacterCardDiv = styled.div`
     }
   }
 
-  .charactercard-wrap > & {
+  .charactercard-container & {
     width: 120px;
     height: 180px;
     padding: 5px;
@@ -263,7 +264,7 @@ const CharacterCardDiv = styled.div`
   }
 `;
 
-const ToggleListButton = styled.div<{ $isListed: boolean }>`
+export const ToggleListButton = styled.div<{ $isListed: boolean }>`
   position: absolute;
   top: 10px;
   right: 10px;

@@ -10,6 +10,8 @@ export interface CharacterListState {
     character_level: number;
     world_name: string;
     guild_mark: string;
+
+    isToDoOpened: boolean;
   };
 }
 
@@ -21,6 +23,8 @@ const initialState: CharacterListState = {
     character_level: 0,
     world_name: "",
     guild_mark: "",
+
+    isToDoOpened: false,
   },
 };
 
@@ -38,13 +42,23 @@ export const characterListSlice = createSlice({
         character_level: action.payload.character_level,
         world_name: action.payload.world_name,
         guild_mark: action.payload.guild_mark,
+
+        isToDoOpened: false,
       };
     },
     removeCharacterList(state, action: PayloadAction<string>) {
       delete state[action.payload];
     },
+    toDoOpen(state, action: PayloadAction<string>) {
+      Object.keys(state).forEach((key) => { 
+        if (key !== action.payload) {
+          state[key].isToDoOpened = false;
+        }
+      });
+      state[action.payload].isToDoOpened = true;
+    },
   },
 });
 
-export let { addCharacterList, removeCharacterList } =
+export let { addCharacterList, removeCharacterList, toDoOpen } =
   characterListSlice.actions;

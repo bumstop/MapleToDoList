@@ -3,6 +3,8 @@ import { ToDoSymbol } from "./ToDoSymbol";
 import { ToDoBoss } from "./ToDoBoss";
 import { useEffect, useRef, useState } from "react";
 
+// props로 어떤 캐릭터의 리스트를 받아올지 결정, 
+// props는 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
 export function ToDos() {
   const tabUl = useRef<HTMLUListElement>(null);
   const symbolTab = useRef<HTMLLIElement>(null);
@@ -62,6 +64,7 @@ export function ToDos() {
   };
 
   // useEffect(() => {
+
   //   if (tabUl.current) {
   //     const firstLi = tabUl.current.childNodes[1] as HTMLElement;
   //     if (firstLi) {

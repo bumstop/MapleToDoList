@@ -42,7 +42,7 @@ export function Modal() {
 }
 
 const ModalDiv = styled.div<{ $isOpen: boolean }>`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
