@@ -264,7 +264,7 @@ const CharacterCardDiv = styled.div`
   }
 `;
 
-export const ToggleListButton = styled.div<{ $isListed: boolean }>`
+const ToggleListButton = styled.div<{ $isListed: boolean }>`
   position: absolute;
   top: 10px;
   right: 10px;
