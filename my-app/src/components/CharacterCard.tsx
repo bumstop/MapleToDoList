@@ -25,7 +25,7 @@ export function CharacterCard(props: SearchInfoState) {
     <CharacterCardDiv>
       <div className="worldname-wrap">
         <img src={returnWorldIcon(world_name)} />
-        <span>{world_name}</span>
+        <div>{world_name}</div>
       </div>
       <ToggleListBtn info={props} />
       {/* 캐릭터 이미지 */}
@@ -151,6 +151,9 @@ const CharacterCardDiv = styled.div`
         width: 14px;
         height: 14px;
       }
+      div {
+        line-height: 14px;
+      }
     }
 
     .image-wrap {
@@ -226,8 +229,11 @@ const CharacterCardDiv = styled.div`
       font-weight: 600;
 
       img {
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
+      }
+      div {
+        line-height: 12px;
       }
     }
     .info-wrap {
