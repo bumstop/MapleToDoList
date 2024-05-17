@@ -66,7 +66,7 @@ export const boss = {
       image: 벨룸,
     },
     {
-      name: "반레온",
+      name: "반 레온",
       image: 반레온,
     },
     {
@@ -132,7 +132,7 @@ export const boss = {
       image: 데미안,
     },
     {
-      name: "가디언엔젤슬라임",
+      name: "가디언 엔젤 슬라임",
       image: 가디언엔젤슬라임,
     },
     {
@@ -148,7 +148,7 @@ export const boss = {
       image: 더스크,
     },
     {
-      name: "진힐라",
+      name: "진 힐라",
       image: 진힐라,
     },
     {
@@ -156,11 +156,11 @@ export const boss = {
       image: 듄켈,
     },
     {
-      name: "선택받은세렌",
+      name: "선택받은 세렌",
       image: 선택받은세렌,
     },
     {
-      name: "감시자칼로스",
+      name: "감시자 칼로스",
       image: 감시자칼로스,
     },
     {
@@ -170,7 +170,7 @@ export const boss = {
   ],
   monthly: [
 		{
-			name: "검은마법사",
+			name: "검은 마법사",
       image: 검은마법사,
 		}
 	],

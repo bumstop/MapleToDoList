@@ -2,16 +2,10 @@ import styled from "styled-components";
 import { ToDoSymbol } from "./ToDoSymbol";
 import { ToDoBoss } from "./ToDoBoss";
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
 export function ToDos() {
-  const dispatch = useDispatch();
-  const characterList = useSelector((state: RootState) => state.characterList);
-  const ListedCharacterName = Object.keys(characterList);
-
   const tabUl = useRef<HTMLUListElement>(null);
   const symbolTab = useRef<HTMLLIElement>(null);
   const bossTab = useRef<HTMLLIElement>(null);
@@ -68,16 +62,6 @@ export function ToDos() {
       setHoverLineWidth(targetWidth);
     }
   };
-
-  // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
-  useEffect(() => {
-    const listOpenedCharacter = ListedCharacterName.find(
-      (key) => characterList[key].isToDoOpened
-    );
-    if (listOpenedCharacter) {
-      console.log(characterList[listOpenedCharacter]);
-    }
-  }, [characterList]);
 
   // useEffect(() => {
 

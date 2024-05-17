@@ -2,21 +2,25 @@ import styled from "styled-components";
 import { Main } from "./Main";
 import { Modal } from "../components/Modal";
 import { CharacterList } from "../components/CharacterList";
+import { Footer } from "./Footer";
 
 export function Layout() {
   return (
-    <AppBackground>
-      {/* 앱 사이드 */}
-      <AppAside>
-        <CharacterList />
-      </AppAside>
-      {/* 앱 바디 */}
-      <AppBody>
-        <Main />
-      </AppBody>
-      {/* 모달창 */}
-      <Modal />
-    </AppBackground>
+    <>
+      <AppBackground>
+        {/* 앱 사이드 */}
+        <AppAside>
+          <CharacterList />
+        </AppAside>
+        {/* 앱 바디 */}
+        <AppBody>
+          <Main />
+        </AppBody>
+        {/* 모달창 */}
+        <Modal />
+      </AppBackground>
+      <Footer />
+    </>
   );
 }
 
