@@ -148,11 +148,11 @@ const CharacterCardDiv = styled.div`
       font-weight: 600;
 
       img {
-        width: 14px;
-        height: 14px;
+        width: 16px;
+        height: 16px;
       }
       div {
-        line-height: 14px;
+        line-height: 16px;
       }
     }
 

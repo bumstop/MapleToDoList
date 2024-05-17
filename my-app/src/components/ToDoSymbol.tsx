@@ -36,8 +36,6 @@ export function ToDoSymbol() {
     listedToDoSymbolWeeklyAcane = Object.keys(toDoSymbolWeeklyAcane).filter(
       (key) => toDoSymbolWeeklyAcane[key].isListed
     );
-
-    console.log(toDoSymbolDailyAcane, listedToDoSymbolDailyAcane);
   }
 
   return (
