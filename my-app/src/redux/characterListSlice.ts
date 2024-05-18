@@ -105,27 +105,27 @@ export const characterListSlice = createSlice({
             daily: {
               acane: {
                 "소멸의 여로": {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
                 "츄츄 아일랜드": {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
                 레헬른: {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
                 아르카나: {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
                 모라스: {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
                 에스페라: {
-                  isListed: true,
+                  isListed: false,
                   isClear: false,
                 },
               },

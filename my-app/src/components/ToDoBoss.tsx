@@ -34,27 +34,27 @@ export function ToDoBoss() {
       (key) => toDoBossMonthly[key].isListed
     );
   }
-  
+
   return (
     <ToDoBossDiv>
-      {listedTodoBossDaily.length > 0 && (
-        <div className="daily">
-          <div>일간</div>
+      <div className="daily">
+        <div>일간</div>
+        {listedTodoBossDaily.length > 0 && (
           <ContentsSection data={boss.daily} toDos={listedTodoBossDaily} />
-        </div>
-      )}
-      {listedTodoBossDaily.length > 0 && (
-        <div className="weekly">
-          <div>주간</div>
+        )}
+      </div>
+      <div className="weekly">
+        <div>주간</div>
+        {listedTodoBossDaily.length > 0 && (
           <ContentsSection data={boss.weekly} toDos={listedTodoBossWeekly} />
-        </div>
-      )}
-      {listedTodoBossDaily.length > 0 && (
-        <div className="monthly">
-          <div>월간</div>
+        )}
+      </div>
+      <div className="monthly">
+        <div>월간</div>
+        {listedTodoBossDaily.length > 0 && (
           <ContentsSection data={boss.monthly} toDos={listedTodoBossMonthly} />
-        </div>
-      )}
+        )}
+      </div>
     </ToDoBossDiv>
   );
 }
