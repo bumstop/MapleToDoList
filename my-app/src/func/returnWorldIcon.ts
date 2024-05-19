@@ -11,6 +11,7 @@ import {
   worldScania,
   worldUnion,
   worldZenith,
+  worldAurora
 } from "../assets/images";
 
 export function returnWorldIcon(characterWorldName: string) {
@@ -37,6 +38,8 @@ export function returnWorldIcon(characterWorldName: string) {
       return worldArcane;
     case "노바":
       return worldNova;
+    case "오로라":
+      return worldAurora;
     case "리부트":
       return worldReboot;
     case "리부트2":

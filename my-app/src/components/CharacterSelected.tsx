@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../redux/store";
 import { returnWorldIcon } from "../func/returnWorldIcon";
+import { ContentsNothing } from "./ContentsNothing";
 
 export function CharacterSelected() {
   const characterList = useSelector((state: RootState) => state.characterList);
@@ -28,34 +29,40 @@ export function CharacterSelected() {
   }
   return (
     <CharacterSelectedDiv>
-      {/* 캐릭터 이미지 */}
-      <div className="image-wrap">
-        <img src={character_image} />
-      </div>
-      {/* 캐릭터 정보 */}
-      <div className="info-wrap">
-        <div className="info info-1">
-          <div className="name">{listOpenedCharacter}</div>
-          <div className="worldname-wrap">
-            <img src={returnWorldIcon(world_name)} />
-            <div>{world_name}</div>
+      {listOpenedCharacter ? (
+        <>
+          {/* 캐릭터 이미지 */}
+          <div className="image-wrap">
+            <img src={character_image} />
           </div>
-        </div>
-        <div className="info info-2">
-          <div className="level">Lv. {character_level}</div>
-          <DivideBar />
-          <div className="class">{character_class}</div>
-          {character_guild_name && <DivideBar />}
-          <div className="guildname-wrap">
-            {character_guild_name && (
-              <>
-                <img src={guild_mark} />
-                <span>{character_guild_name}</span>
-              </>
-            )}
+          {/* 캐릭터 정보 */}
+          <div className="info-wrap">
+            <div className="info info-1">
+              <div className="name">{listOpenedCharacter}</div>
+              <div className="worldname-wrap">
+                <img src={returnWorldIcon(world_name)} />
+                <div>{world_name}</div>
+              </div>
+            </div>
+            <div className="info info-2">
+              <div className="level">Lv. {character_level}</div>
+              <DivideBar />
+              <div className="class">{character_class}</div>
+              {character_guild_name && <DivideBar />}
+              <div className="guildname-wrap">
+                {character_guild_name && (
+                  <>
+                    <img src={guild_mark} />
+                    <span>{character_guild_name}</span>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <ContentsNothing calledBy="CharacterSelected"/>
+      )}
     </CharacterSelectedDiv>
   );
 }
@@ -63,6 +70,7 @@ export function CharacterSelected() {
 const CharacterSelectedDiv = styled.div`
   position: relative;
   width: 100%;
+	min-height: 150px;
   padding: 10px;
   display: flex;
 
@@ -138,7 +146,7 @@ const CharacterSelectedDiv = styled.div`
         font-weight: 500;
 
         img {
-					width: 16px;
+          width: 16px;
           height: 16px;
           margin-right: 4px;
         }

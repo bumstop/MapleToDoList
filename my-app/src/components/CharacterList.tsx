@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { SearchBox } from "./SearchBox";
 import { CharacterCard } from "./CharacterCard";
 import { changeToDoOpenState } from "../redux/characterListSlice";
+import { ContentsNothing } from "./ContentsNothing";
 
 export function CharacterList() {
   const dispatch = useDispatch();
@@ -24,31 +25,35 @@ export function CharacterList() {
       dispatch(changeToDoOpenState(name)); // 투두 리스트에 해당 캐릭터의 투두 리스트를 뿌려줘야함.
     }
   }
-
+  console.log(ListedCharacterName.length);
   return (
     <CharacterListDiv>
       <div className="searchbox-wrap">
         <SearchBox />
       </div>
-      <div className="charactercard-container">
-        {ListedCharacterName.map((key) => (
-          <div
-            className="charactercard-wrap"
-            onClick={(e) => openToDoList(e, key)}
-            key={key}
-          >
-            <CharacterCard
-              character_class={characterList[key].character_class}
-              character_guild_name={characterList[key].character_guild_name}
-              character_image={characterList[key].character_image}
-              character_level={characterList[key].character_level}
-              character_name={key}
-              world_name={characterList[key].world_name}
-              guild_mark={characterList[key].guild_mark}
-            />
-          </div>
-        ))}
-      </div>
+      {ListedCharacterName.length ? (
+        <div className="charactercard-container">
+          {ListedCharacterName.map((key) => (
+            <div
+              className="charactercard-wrap"
+              onClick={(e) => openToDoList(e, key)}
+              key={key}
+            >
+              <CharacterCard
+                character_class={characterList[key].character_class}
+                character_guild_name={characterList[key].character_guild_name}
+                character_image={characterList[key].character_image}
+                character_level={characterList[key].character_level}
+                character_name={key}
+                world_name={characterList[key].world_name}
+                guild_mark={characterList[key].guild_mark}
+              />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ContentsNothing calledBy="CharacterList" />
+      )}
     </CharacterListDiv>
   );
 }

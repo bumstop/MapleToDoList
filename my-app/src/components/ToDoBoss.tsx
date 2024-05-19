@@ -43,7 +43,7 @@ export function ToDoBoss() {
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.daily} toDos={listedTodoBossDaily} />
         ) : (
-          <ContentsNothing />
+          <ContentsNothing calledBy="ToDos"/>
         )}
       </div>
       <div className="weekly">
@@ -51,7 +51,7 @@ export function ToDoBoss() {
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.weekly} toDos={listedTodoBossWeekly} />
         ) : (
-          <ContentsNothing />
+          <ContentsNothing calledBy="ToDos"/>
         )}
       </div>
       <div className="monthly">
@@ -59,7 +59,7 @@ export function ToDoBoss() {
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.monthly} toDos={listedTodoBossMonthly} />
         ) : (
-          <ContentsNothing />
+          <ContentsNothing calledBy="ToDos"/>
         )}
       </div>
     </ToDoBossDiv>

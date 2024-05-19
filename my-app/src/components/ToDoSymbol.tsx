@@ -52,7 +52,7 @@ export function ToDoSymbol() {
               toDos={listedToDoSymbolDailyAcane}
             />
           ) : (
-            <ContentsNothing />
+            <ContentsNothing calledBy="ToDos" />
           )}
         </div>
 
@@ -65,7 +65,7 @@ export function ToDoSymbol() {
               toDos={listedToDoSymbolDailyGrandis}
             />
           ) : (
-            <ContentsNothing />
+            <ContentsNothing calledBy="ToDos" />
           )}
         </div>
       </div>
@@ -81,7 +81,7 @@ export function ToDoSymbol() {
               toDos={listedToDoSymbolWeeklyAcane}
             />
           ) : (
-            <ContentsNothing />
+            <ContentsNothing calledBy="ToDos" />
           )}
         </div>
       </div>

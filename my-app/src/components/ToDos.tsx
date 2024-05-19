@@ -2,10 +2,18 @@ import styled from "styled-components";
 import { ToDoSymbol } from "./ToDoSymbol";
 import { ToDoBoss } from "./ToDoBoss";
 import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
 export function ToDos() {
+  const characterList = useSelector((state: RootState) => state.characterList);
+  const listedCharacterName = Object.keys(characterList);
+  // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
+  const listOpenedCharacter = listedCharacterName.find(
+    (key) => characterList[key].isToDoOpened
+  );
   const tabUl = useRef<HTMLUListElement>(null);
   const symbolTab = useRef<HTMLLIElement>(null);
   const bossTab = useRef<HTMLLIElement>(null);
@@ -119,6 +127,7 @@ export function ToDos() {
             보스
           </li>
         </ul>
+        <div className="header">📄 {listOpenedCharacter && listOpenedCharacter + "의"} Todo List</div>
         <HoverLine $width={hoverLineWidth} $left={hoverLineLeft} />
       </TabDiv>
       {tabNow === symbolTab && <ToDoSymbol />}
@@ -134,6 +143,8 @@ const ToDosDiv = styled.div`
 
 const TabDiv = styled.div`
   position: relative;
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
   font-size: 30px;
   font-weight: normal;
@@ -147,6 +158,9 @@ const TabDiv = styled.div`
     padding: 10px;
     cursor: pointer;
     z-index: 1;
+  }
+  .header {
+    padding: 10px;
   }
 `;
 

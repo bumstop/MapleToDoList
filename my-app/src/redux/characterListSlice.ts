@@ -7,9 +7,8 @@ interface ToDoStateType {
 }
 
 export interface CharacterListState {
+  // 키값으로 캐릭터 닉네임을 사용
   [key: string]: {
-    // 키값으로 캐릭터 닉네임을 사용
-
     // 캐릭터 기본정보
     character_class: string;
     character_guild_name: string;
@@ -54,33 +53,31 @@ export interface CharacterListState {
 }
 
 const initialState: CharacterListState = {
-  nickname: {
-    character_class: "",
-    character_guild_name: "",
-    character_image: "",
-    character_level: 0,
-    world_name: "",
-    guild_mark: "",
-
-    isToDoOpened: false,
-
-    toDoList: {
-      symbol: {
-        daily: {
-          acane: {},
-          grandis: {},
-        },
-        weekly: {
-          acane: {},
-        },
-      },
-      boss: {
-        daily: {},
-        weekly: {},
-        monthly: {},
-      },
-    },
-  },
+  // nickname: {
+  //   character_class: "",
+  //   character_guild_name: "",
+  //   character_image: "",
+  //   character_level: 0,
+  //   world_name: "",
+  //   guild_mark: "",
+  //   isToDoOpened: false,
+  //   toDoList: {
+  //     symbol: {
+  //       daily: {
+  //         acane: {},
+  //         grandis: {},
+  //       },
+  //       weekly: {
+  //         acane: {},
+  //       },
+  //     },
+  //     boss: {
+  //       daily: {},
+  //       weekly: {},
+  //       monthly: {},
+  //     },
+  //   },
+  // },
 };
 
 export const characterListSlice = createSlice({
@@ -88,7 +85,7 @@ export const characterListSlice = createSlice({
   initialState: initialState,
   reducers: {
     addCharacterList(state, action: PayloadAction<SearchInfoState>) {
-      state.nickname && delete state.nickname;
+      // state.nickname && delete state.nickname;
 
       state[action.payload.character_name] = {
         character_class: action.payload.character_class,

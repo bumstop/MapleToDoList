@@ -66,4 +66,5 @@ export { default as worldBera } from "./ico_world_bera.gif";
 export { default as worldElysium } from "./ico_world_elysium.gif";
 export { default as worldArcane } from "./ico_world_arcane.gif";
 export { default as worldNova } from "./ico_world_nova.gif";
+export { default as worldAurora } from "./ico_world_aurora.gif";
 export { default as worldReboot } from "./ico_world_reboot.png";
