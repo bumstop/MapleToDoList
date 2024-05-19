@@ -3,6 +3,7 @@ import { symbol } from "../data/symbol";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { useEffect } from "react";
+import { ContentsNothing } from "./ContentsNothing";
 
 export function ToDoSymbol() {
   const dispatch = useDispatch();
@@ -45,22 +46,26 @@ export function ToDoSymbol() {
         {/* 아케인 일일퀘스트 */}
         <div className="daily-acane">
           <div>아케인 일일퀘스트</div>
-          {listedToDoSymbolDailyAcane.length > 0 && (
+          {listedToDoSymbolDailyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.daily.acane}
               toDos={listedToDoSymbolDailyAcane}
             />
+          ) : (
+            <ContentsNothing />
           )}
         </div>
 
         {/* 그란디스 일일퀘스트 */}
         <div className="daily-grandis">
           <div>그란디스 일일퀘스트</div>
-          {listedToDoSymbolDailyGrandis.length > 0 && (
+          {listedToDoSymbolDailyGrandis.length > 0 ? (
             <ContentsSection
               data={symbol.daily.grandis}
               toDos={listedToDoSymbolDailyGrandis}
             />
+          ) : (
+            <ContentsNothing />
           )}
         </div>
       </div>
@@ -70,11 +75,13 @@ export function ToDoSymbol() {
         {/* 아케인 주간퀘스트 */}
         <div className="weekly-acane">
           <div>아케인 주간컨텐츠</div>
-          {listedToDoSymbolWeeklyAcane.length > 0 && (
+          {listedToDoSymbolWeeklyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.weekly.acane}
               toDos={listedToDoSymbolWeeklyAcane}
             />
+          ) : (
+            <ContentsNothing />
           )}
         </div>
       </div>

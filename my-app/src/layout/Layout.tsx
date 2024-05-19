@@ -3,6 +3,7 @@ import { Main } from "./Main";
 import { Modal } from "../components/Modal";
 import { CharacterList } from "../components/CharacterList";
 import { Footer } from "./Footer";
+import { CharacterSelected } from "../components/CharacterSelected";
 
 export function Layout() {
   return (
@@ -10,6 +11,7 @@ export function Layout() {
       <AppBackground>
         {/* 앱 사이드 */}
         <AppAside>
+          <CharacterSelected />
           <CharacterList />
         </AppAside>
         {/* 앱 바디 */}
@@ -45,10 +47,9 @@ const AppBody = styled.div`
 `;
 
 const AppAside = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   width: 390px;
   min-width: 390px;
-  border-radius: 1rem;
-  box-shadow: 0 1px 6px #20212447;
-  background-color: #fff;
-  padding: 10px;
 `;

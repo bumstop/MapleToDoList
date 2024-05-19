@@ -84,7 +84,8 @@ export function ToggleListBtn(props: { info: SearchInfoState }) {
             })
           );
         } else {
-          dispatch(removeCharacterList(character_name));
+          if (window.confirm("리스트에서 캐릭터를 삭제할까요?"))
+            dispatch(removeCharacterList(character_name));
         }
       }}
     >
@@ -114,16 +115,16 @@ const CharacterCardDiv = styled.div`
   padding: 10px;
   border-radius: 1rem;
   border: 1px solid #f0f2f5;
-  box-shadow: 0 1px 6px #d0d1d3;
+  box-shadow: 0 0 6px #3a3946;
   background-color: #fff;
-  
+
   &::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 59%;
+    height: 58.5%;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
     background: #000 no-repeat center/cover url(${xmas});
@@ -215,10 +216,15 @@ const CharacterCardDiv = styled.div`
     }
   }
 
+  .charactercard-container &:hover {
+    box-shadow: 0 0 6px #3a3946;
+  }
+
   .charactercard-container & {
     width: 120px;
     height: 180px;
     padding: 5px;
+    box-shadow: 0 1px 6px #d0d1d3;
 
     .worldname-wrap {
       top: 5px;

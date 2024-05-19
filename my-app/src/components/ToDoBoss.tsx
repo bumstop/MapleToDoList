@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { boss } from "../data/boss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { ContentsNothing } from "./ContentsNothing";
 
 export function ToDoBoss() {
   const dispatch = useDispatch();
@@ -39,20 +40,26 @@ export function ToDoBoss() {
     <ToDoBossDiv>
       <div className="daily">
         <div>일간</div>
-        {listedTodoBossDaily.length > 0 && (
+        {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.daily} toDos={listedTodoBossDaily} />
+        ) : (
+          <ContentsNothing />
         )}
       </div>
       <div className="weekly">
         <div>주간</div>
-        {listedTodoBossDaily.length > 0 && (
+        {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.weekly} toDos={listedTodoBossWeekly} />
+        ) : (
+          <ContentsNothing />
         )}
       </div>
       <div className="monthly">
         <div>월간</div>
-        {listedTodoBossDaily.length > 0 && (
+        {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.monthly} toDos={listedTodoBossMonthly} />
+        ) : (
+          <ContentsNothing />
         )}
       </div>
     </ToDoBossDiv>

@@ -54,12 +54,19 @@ export function CharacterList() {
 }
 const CharacterListDiv = styled.div`
   position: relative;
+  width: 100%;
+  padding: 10px;
+  border-radius: 1rem;
+  box-shadow: 0 1px 6px #20212447;
+  background-color: #fff;
+
+  flex-grow: 1;
 
   & {
     .searchbox-wrap {
       position: absolute;
-      top: 0;
-      right: 0;
+      top: 10px;
+      right: 10px;
     }
     .charactercard-container {
       display: flex;
