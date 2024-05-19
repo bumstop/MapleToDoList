@@ -88,7 +88,7 @@ export function ToDos() {
   // }, []);
 
   // 이전에 선택된 탭 폰트 normal, 현재 선택된 탭 폰트 bold 적용
-  
+
   useEffect(() => {
     if (tabPrevRef.current) {
       tabPrevRef.current.style.cssText = `
@@ -104,7 +104,6 @@ export function ToDos() {
       `;
     }
   }, [tabNow]);
-
 
   return (
     <ToDosDiv>
@@ -127,7 +126,9 @@ export function ToDos() {
             보스
           </li>
         </ul>
-        <div className="header">📄 {listOpenedCharacter && listOpenedCharacter + "의"} Todo List</div>
+        <div className="header">
+          📝 {listOpenedCharacter && `${listOpenedCharacter}의`} Todo List
+        </div>
         <HoverLine $width={hoverLineWidth} $left={hoverLineLeft} />
       </TabDiv>
       {tabNow === symbolTab && <ToDoSymbol />}
