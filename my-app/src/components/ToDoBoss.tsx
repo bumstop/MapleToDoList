@@ -3,31 +3,31 @@ import { boss } from "../data/boss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ContentsNothing } from "./ContentsNothing";
+import {
+  ToDoCategoryType,
+  ToDoDetailStateType,
+  toggleIsClearState,
+} from "../redux/characterListSlice";
 
 export function ToDoBoss() {
   const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
-  const listOpenedCharacter = listedCharacterName.find(
-    (key) => characterList[key].isToDoOpened
-  );
-
+  const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
+  let toDoBossDaily: { [key: string]: ToDoDetailStateType } = {};
+  let toDoBossWeekly: { [key: string]: ToDoDetailStateType } = {};
+  let toDoBossMonthly: { [key: string]: ToDoDetailStateType } = {};
   let listedTodoBossDaily: string[] = [];
   let listedTodoBossWeekly: string[] = [];
   let listedTodoBossMonthly: string[] = [];
 
   if (listOpenedCharacter) {
-    const toDoBossDaily =
-      characterList[listOpenedCharacter].toDoList.boss.daily;
-    const toDoBossWeekly =
-      characterList[listOpenedCharacter].toDoList.boss.weekly;
-    const toDoBossMonthly =
-      characterList[listOpenedCharacter].toDoList.boss.monthly;
+    toDoBossDaily = characterList[listOpenedCharacter].toDoList.boss.daily;
+    toDoBossWeekly = characterList[listOpenedCharacter].toDoList.boss.weekly;
+    toDoBossMonthly = characterList[listOpenedCharacter].toDoList.boss.monthly;
 
-    listedTodoBossDaily = Object.keys(toDoBossDaily).filter(
-      (key) => toDoBossDaily[key].isListed
-    );
+    listedTodoBossDaily = Object.keys(toDoBossDaily).filter((key) => toDoBossDaily[key].isListed);
     listedTodoBossWeekly = Object.keys(toDoBossWeekly).filter(
       (key) => toDoBossWeekly[key].isListed
     );
@@ -41,25 +41,25 @@ export function ToDoBoss() {
       <div className="daily">
         <div>일간</div>
         {listedTodoBossDaily.length > 0 ? (
-          <ContentsSection data={boss.daily} toDos={listedTodoBossDaily} />
+          <ContentsSection data={boss.daily} toDos={toDoBossDaily} calledBy="daily-boss" />
         ) : (
-          <ContentsNothing calledBy="ToDos"/>
+          <ContentsNothing calledBy="ToDos" />
         )}
       </div>
       <div className="weekly">
         <div>주간</div>
         {listedTodoBossDaily.length > 0 ? (
-          <ContentsSection data={boss.weekly} toDos={listedTodoBossWeekly} />
+          <ContentsSection data={boss.weekly} toDos={toDoBossWeekly} calledBy="weekly-boss" />
         ) : (
-          <ContentsNothing calledBy="ToDos"/>
+          <ContentsNothing calledBy="ToDos" />
         )}
       </div>
       <div className="monthly">
         <div>월간</div>
         {listedTodoBossDaily.length > 0 ? (
-          <ContentsSection data={boss.monthly} toDos={listedTodoBossMonthly} />
+          <ContentsSection data={boss.monthly} toDos={toDoBossMonthly} calledBy="monthly-boss" />
         ) : (
-          <ContentsNothing calledBy="ToDos"/>
+          <ContentsNothing calledBy="ToDos" />
         )}
       </div>
     </ToDoBossDiv>
@@ -72,16 +72,23 @@ const ToDoBossDiv = styled.div`
 
 interface DataType {
   data: { name: string; image: string }[];
-  toDos: string[];
+  calledBy: ToDoCategoryType;
+  toDos: { [key: string]: ToDoDetailStateType };
 }
 
-function ContentsSection({ data, toDos }: DataType) {
+function ContentsSection({ data, toDos, calledBy }: DataType) {
+  const dispatch = useDispatch();
+  const listedToDos = Object.keys(toDos).filter((key) => toDos[key].isListed);
+
   return (
     <ContentsSectionDiv>
       {data.map((v) => {
-        if (toDos.includes(v.name)) {
+        if (listedToDos.includes(v.name)) {
           return (
-            <ContentsBoxDiv key={v.name}>
+            <ContentsBoxDiv
+              key={v.name}
+              onClick={() => dispatch(toggleIsClearState([v.name, calledBy]))}
+            >
               <div className="img">
                 <img src={v.image} />
               </div>

@@ -2,29 +2,30 @@ import styled from "styled-components";
 import { symbol } from "../data/symbol";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { useEffect } from "react";
 import { ContentsNothing } from "./ContentsNothing";
+import {
+  ToDoDetailStateType,
+  ToDoCategoryType,
+  toggleIsClearState,
+} from "../redux/characterListSlice";
+import { useEffect } from "react";
 
 export function ToDoSymbol() {
-  const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
-  const listOpenedCharacter = listedCharacterName.find(
-    (key) => characterList[key].isToDoOpened
-  );
-
+  const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
+  let toDoSymbolDailyAcane: { [key: string]: ToDoDetailStateType } = {};
+  let toDoSymbolDailyGrandis: { [key: string]: ToDoDetailStateType } = {};
+  let toDoSymbolWeeklyAcane: { [key: string]: ToDoDetailStateType } = {};
   let listedToDoSymbolDailyAcane: string[] = [];
   let listedToDoSymbolDailyGrandis: string[] = [];
   let listedToDoSymbolWeeklyAcane: string[] = [];
 
   if (listOpenedCharacter) {
-    const toDoSymbolDailyAcane =
-      characterList[listOpenedCharacter].toDoList.symbol.daily.acane;
-    const toDoSymbolDailyGrandis =
-      characterList[listOpenedCharacter].toDoList.symbol.daily.grandis;
-    const toDoSymbolWeeklyAcane =
-      characterList[listOpenedCharacter].toDoList.symbol.weekly.acane;
+    toDoSymbolDailyAcane = characterList[listOpenedCharacter].toDoList.symbol.daily.acane;
+    toDoSymbolDailyGrandis = characterList[listOpenedCharacter].toDoList.symbol.daily.grandis;
+    toDoSymbolWeeklyAcane = characterList[listOpenedCharacter].toDoList.symbol.weekly.acane;
 
     listedToDoSymbolDailyAcane = Object.keys(toDoSymbolDailyAcane).filter(
       (key) => toDoSymbolDailyAcane[key].isListed
@@ -38,7 +39,13 @@ export function ToDoSymbol() {
       (key) => toDoSymbolWeeklyAcane[key].isListed
     );
   }
-
+  useEffect(() => {
+    if (listOpenedCharacter) {
+      console.log(toDoSymbolDailyAcane);
+      Object.keys(toDoSymbolDailyAcane).map((v) => console.log(toDoSymbolDailyAcane[v].isClear));
+    }
+  }, [toDoSymbolDailyAcane]);
+  
   return (
     <ToDoSymbolDiv>
       {/* 일간 */}
@@ -49,7 +56,8 @@ export function ToDoSymbol() {
           {listedToDoSymbolDailyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.daily.acane}
-              toDos={listedToDoSymbolDailyAcane}
+              calledBy="daily-acane"
+              toDos={toDoSymbolDailyAcane}
             />
           ) : (
             <ContentsNothing calledBy="ToDos" />
@@ -62,7 +70,8 @@ export function ToDoSymbol() {
           {listedToDoSymbolDailyGrandis.length > 0 ? (
             <ContentsSection
               data={symbol.daily.grandis}
-              toDos={listedToDoSymbolDailyGrandis}
+              calledBy="daily-grandis"
+              toDos={toDoSymbolDailyGrandis}
             />
           ) : (
             <ContentsNothing calledBy="ToDos" />
@@ -78,7 +87,8 @@ export function ToDoSymbol() {
           {listedToDoSymbolWeeklyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.weekly.acane}
-              toDos={listedToDoSymbolWeeklyAcane}
+              calledBy="weekly-acane"
+              toDos={toDoSymbolWeeklyAcane}
             />
           ) : (
             <ContentsNothing calledBy="ToDos" />
@@ -95,16 +105,23 @@ const ToDoSymbolDiv = styled.div`
 
 interface DataType {
   data: { text: string; image: string }[];
-  toDos: string[];
+  calledBy: ToDoCategoryType;
+  toDos: { [key: string]: ToDoDetailStateType };
 }
 
-function ContentsSection({ data, toDos }: DataType) {
+function ContentsSection({ data, calledBy, toDos }: DataType) {
+  const dispatch = useDispatch();
+  const listedToDos = Object.keys(toDos).filter((key) => toDos[key].isListed);
+
   return (
     <ContentsSectionDiv>
       {data.map((v) => {
-        if (toDos.includes(v.text)) {
+        if (listedToDos.includes(v.text)) {
           return (
-            <ContentsBoxDiv key={v.text}>
+            <ContentsBoxDiv
+              key={v.text}
+              onClick={() => dispatch(toggleIsClearState([v.text, calledBy]))}
+            >
               <div className="img">
                 <img src={v.image} />
               </div>

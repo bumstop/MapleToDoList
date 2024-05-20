@@ -8,24 +8,16 @@ export function ContentsNothing({ calledBy }: ContentsNothingPropsType) {
   let returnElement: JSX.Element = <></>;
 
   if (calledBy === "ToDos")
-    returnElement = (
-      <ContentsNothingDiv>
-				추가한 목록이 없습니다 !
-			</ContentsNothingDiv>
-    );
+    returnElement = <ContentsNothingDiv>추가한 목록이 없습니다 !</ContentsNothingDiv>;
 
   if (calledBy === "CharacterList")
     returnElement = (
-      <CharacterListNothingDiv>
-        캐릭터 검색으로 캐릭터를 추가해보세요 !
-      </CharacterListNothingDiv>
+      <CharacterListNothingDiv>캐릭터 검색으로 캐릭터를 추가해보세요 !</CharacterListNothingDiv>
     );
 
   if (calledBy === "CharacterSelected")
     returnElement = (
-      <CharacterSelectedNothingDiv>
-        캐릭터 카드를 클릭해보세요 !
-      </CharacterSelectedNothingDiv>
+      <CharacterSelectedNothingDiv>캐릭터 카드를 클릭해보세요 !</CharacterSelectedNothingDiv>
     );
 
   return returnElement;

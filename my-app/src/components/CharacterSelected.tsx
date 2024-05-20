@@ -8,9 +8,7 @@ export function CharacterSelected() {
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
-  const listOpenedCharacter = listedCharacterName.find(
-    (key) => characterList[key].isToDoOpened
-  );
+  const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
   let character_class: string = "";
   let character_guild_name: string = "";
   let character_image: string = "";
@@ -20,8 +18,7 @@ export function CharacterSelected() {
 
   if (listOpenedCharacter) {
     character_class = characterList[listOpenedCharacter].character_class;
-    character_guild_name =
-      characterList[listOpenedCharacter].character_guild_name;
+    character_guild_name = characterList[listOpenedCharacter].character_guild_name;
     character_image = characterList[listOpenedCharacter].character_image;
     character_level = characterList[listOpenedCharacter].character_level;
     world_name = characterList[listOpenedCharacter].world_name;
@@ -61,7 +58,7 @@ export function CharacterSelected() {
           </div>
         </>
       ) : (
-        <ContentsNothing calledBy="CharacterSelected"/>
+        <ContentsNothing calledBy="CharacterSelected" />
       )}
     </CharacterSelectedDiv>
   );
@@ -70,10 +67,9 @@ export function CharacterSelected() {
 const CharacterSelectedDiv = styled.div`
   position: relative;
   width: 100%;
-	min-height: 150px;
+  min-height: 150px;
   padding: 10px;
   display: flex;
-
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;

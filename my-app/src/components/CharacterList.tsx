@@ -12,10 +12,7 @@ export function CharacterList() {
   const characterList = useSelector((state: RootState) => state.characterList);
   const ListedCharacterName = Object.keys(characterList);
 
-  function openToDoList(
-    e: React.MouseEvent<HTMLElement, MouseEvent>,
-    name: string
-  ) {
+  function openToDoList(e: React.MouseEvent<HTMLElement, MouseEvent>, name: string) {
     const target = e.target as HTMLElement;
     const toggleButton = e.currentTarget.childNodes[0].childNodes[1];
 
@@ -25,7 +22,6 @@ export function CharacterList() {
       dispatch(changeToDoOpenState(name)); // 투두 리스트에 해당 캐릭터의 투두 리스트를 뿌려줘야함.
     }
   }
-  console.log(ListedCharacterName.length);
   return (
     <CharacterListDiv>
       <div className="searchbox-wrap">
@@ -34,11 +30,7 @@ export function CharacterList() {
       {ListedCharacterName.length ? (
         <div className="charactercard-container">
           {ListedCharacterName.map((key) => (
-            <div
-              className="charactercard-wrap"
-              onClick={(e) => openToDoList(e, key)}
-              key={key}
-            >
+            <div className="charactercard-wrap" onClick={(e) => openToDoList(e, key)} key={key}>
               <CharacterCard
                 character_class={characterList[key].character_class}
                 character_guild_name={characterList[key].character_guild_name}
