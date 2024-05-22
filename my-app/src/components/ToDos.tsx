@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ToDoSymbolSetting } from "./ToDoSymbolSetting";
 import { ToDoBossSetting } from "./ToDoBossSetting";
+import { settingIcon } from "../assets/images";
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
@@ -107,6 +108,7 @@ export function ToDos() {
       `;
     }
 
+    // 탭 변경시 호버라인 동기화 (mouseleave 이벤트와 동일)
     let targetRect: DOMRect;
     let relativeLeft: number = 0;
     let targetWidth: number = 0;
@@ -155,7 +157,8 @@ export function ToDos() {
       </TabDiv>
       <div className="setting-wrap">
         <ListSettingButton onClick={() => setSettingMode((prev) => !prev)}>
-          수정하기
+          <img src={settingIcon} />
+          <span>{settingMode ? "돌아가기" : "수정하기"}</span>
         </ListSettingButton>
       </div>
       {tabNow === symbolTab && (settingMode ? <ToDoSymbolSetting /> : <ToDoSymbol />)}
@@ -199,9 +202,18 @@ const TabDiv = styled.div`
   }
 `;
 const ListSettingButton = styled.button`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 30px;
+  font-size: 1.8rem;
   padding: 5px 10px;
   border-radius: 0.5rem;
-
+  & {
+    img {
+      height: 100%;
+    }
+  }
   &:hover {
     background-color: #ccc;
   }

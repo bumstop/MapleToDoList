@@ -1,43 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { ToDoCategoryType, ToDoDetailStateType, toggleIsClearState } from "../redux/characterListSlice";
+import {
+  ToDoCategoryType,
+  ToDoDetailStateType,
+  toggleIsListedState,
+} from "../redux/characterListSlice";
 import { symbol } from "../data/symbol";
 import styled, { css } from "styled-components";
-import { checkIcon } from "../assets/images";
 
 export function ToDoSymbolSetting() {
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
   const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
+
   let toDoSymbolDailyAcane: { [key: string]: ToDoDetailStateType } = {};
   let toDoSymbolDailyGrandis: { [key: string]: ToDoDetailStateType } = {};
   let toDoSymbolWeeklyAcane: { [key: string]: ToDoDetailStateType } = {};
-  let listedToDoSymbolDailyAcane: string[] = [];
-  let listedToDoSymbolDailyGrandis: string[] = [];
-  let listedToDoSymbolWeeklyAcane: string[] = [];
 
   if (listOpenedCharacter) {
     toDoSymbolDailyAcane = characterList[listOpenedCharacter].toDoList.symbol.daily.acane;
     toDoSymbolDailyGrandis = characterList[listOpenedCharacter].toDoList.symbol.daily.grandis;
     toDoSymbolWeeklyAcane = characterList[listOpenedCharacter].toDoList.symbol.weekly.acane;
-
-    listedToDoSymbolDailyAcane = Object.keys(toDoSymbolDailyAcane).filter(
-      (key) => toDoSymbolDailyAcane[key].isListed
-    );
-
-    listedToDoSymbolDailyGrandis = Object.keys(toDoSymbolDailyGrandis).filter(
-      (key) => toDoSymbolDailyGrandis[key].isListed
-    );
-
-    listedToDoSymbolWeeklyAcane = Object.keys(toDoSymbolWeeklyAcane).filter(
-      (key) => toDoSymbolWeeklyAcane[key].isListed
-    );
   }
 
   return (
     <ToDoSymbolDiv>
-			<>수정화면</>
       {/* 일간 */}
       <div className="daily">
         {/* 아케인 일일퀘스트 */}
@@ -64,7 +52,6 @@ export function ToDoSymbolSetting() {
           }
         </div>
       </div>
-
       {/* 주간 */}
       <div className="weekly">
         {/* 아케인 주간퀘스트 */}
@@ -102,27 +89,24 @@ interface DataType {
 function ContentsSection({ data, calledBy, toDos }: DataType) {
   const dispatch = useDispatch();
   const listedToDos = Object.keys(toDos).filter((key) => toDos[key].isListed);
-  const clearedToDos = Object.keys(toDos).filter((key) => toDos[key].isClear);
 
   return (
     <ContentsSectionDiv>
       {data.map((v) => {
-        if (listedToDos.includes(v.text)) {
-          const isClear = clearedToDos.includes(v.text) ? true : false;
+        const isListed = listedToDos.includes(v.text) ? true : false;
 
-          return (
-            <ContentsBoxDiv
-              key={v.text}
-              onClick={() => dispatch(toggleIsClearState([v.text, calledBy]))}
-              $isClear={isClear}
-            >
-              <div className="img">
-                <img src={v.image} />
-              </div>
-              <div className="text">{v.text}</div>
-            </ContentsBoxDiv>
-          );
-        }
+        return (
+          <ContentsBoxDiv
+            key={v.text}
+            onClick={() => dispatch(toggleIsListedState([v.text, calledBy]))}
+            $isListed={isListed}
+          >
+            <div className="img">
+              <img src={v.image} />
+            </div>
+            <div className="text">{v.text}</div>
+          </ContentsBoxDiv>
+        );
       })}
     </ContentsSectionDiv>
   );
@@ -136,21 +120,38 @@ const ContentsSectionDiv = styled.div`
   margin: 20px 0 40px;
 `;
 
-const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
+const ContentsBoxDiv = styled.div<{ $isListed: boolean }>`
   display: flex;
   align-items: center;
   flex-basis: calc((100% / 3) - (5px * 2 / 3));
   // 100% / (아이템갯수) - (gap * gap갯수 / 아이템갯수)
   position: relative;
   padding: 5px;
-  border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
   background-color: transparent;
   cursor: pointer;
 
+  ${({ $isListed }) =>
+    $isListed
+      ? css`
+          &::after {
+            content: "추가됨";
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 1.2rem;
+            color: #ff890a;
+            letter-spacing: 0.5px;
+          }
+          border: 1px solid #ff890a;
+        `
+      : css`
+          border: 1px solid #e5e7eb;
+          color: #ccc;
+        `}
+
   &:hover {
-    border: 1px solid #ff890a;
-    color: #ff890a;
+    border: 1px solid #e5e7eb;
   }
 
   .img {
@@ -169,21 +170,4 @@ const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
     flex-grow: 1;
     text-align: center;
   }
-
-  ${({ $isClear }) =>
-    $isClear &&
-    css`
-      color: #ddd;
-
-      .img::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: no-repeat center/90% url(${checkIcon});
-        backdrop-filter: grayscale(100%);
-      }
-    `}
 `;

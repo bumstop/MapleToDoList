@@ -11,7 +11,6 @@ import {
 import { checkIcon } from "../assets/images";
 
 export function ToDoBoss() {
-  const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
