@@ -356,6 +356,47 @@ export const characterListSlice = createSlice({
       state[action.payload].isToDoOpened = true;
     },
 
+    /** isListed 속성을 바꿀 대상과 대상이 속해있는 카테고리를 입력받아 변경 */
+    toggleIsListedState(state, action: PayloadAction<[string, ToDoCategoryType]>) {
+      const listOpenedName = Object.keys(state).find((key) => state[key].isToDoOpened);
+      if (listOpenedName) {
+        const listOpenedCharacter = state[listOpenedName];
+        let target: ToDoDetailStateType;
+
+        switch (action.payload[1]) {
+          case "daily-acane":
+            target = listOpenedCharacter.toDoList.symbol.daily.acane[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+
+          case "daily-grandis":
+            target = listOpenedCharacter.toDoList.symbol.daily.grandis[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+
+          case "weekly-acane":
+            target = listOpenedCharacter.toDoList.symbol.weekly.acane[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+
+          case "daily-boss":
+            target = listOpenedCharacter.toDoList.boss.daily[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+
+          case "weekly-boss":
+            target = listOpenedCharacter.toDoList.boss.weekly[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+
+          case "monthly-boss":
+            target = listOpenedCharacter.toDoList.boss.monthly[action.payload[0]];
+            target.isListed = target.isListed ? false : true;
+            break;
+        }
+      }
+    },
+
     /** isClear 속성을 바꿀 대상과 대상이 속해있는 카테고리를 입력받아 변경 */
     toggleIsClearState(state, action: PayloadAction<[string, ToDoCategoryType]>) {
       const listOpenedName = Object.keys(state).find((key) => state[key].isToDoOpened);
@@ -399,5 +440,10 @@ export const characterListSlice = createSlice({
   },
 });
 
-export let { addCharacterList, removeCharacterList, changeToDoOpenState, toggleIsClearState } =
-  characterListSlice.actions;
+export let {
+  addCharacterList,
+  removeCharacterList,
+  changeToDoOpenState,
+  toggleIsListedState,
+  toggleIsClearState,
+} = characterListSlice.actions;

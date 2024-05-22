@@ -1,12 +1,3 @@
-// 캐릭터 카드 배경
-export { default as xmas } from "./xmas_03_2560x1440.jpg";
-
-// 검색 아이콘
-export { default as searchIcon } from "./magnifier_icon.png";
-
-// 체크 아이콘
-export { default as checkIcon } from "./check-icon.png";
-
 // 심볼 이미지
 export { default as acaneSymbol1 } from "./acane-symbol-1.webp";
 export { default as acaneSymbol2 } from "./acane-symbol-2.webp";
@@ -71,3 +62,18 @@ export { default as worldArcane } from "./ico_world_arcane.gif";
 export { default as worldNova } from "./ico_world_nova.gif";
 export { default as worldAurora } from "./ico_world_aurora.gif";
 export { default as worldReboot } from "./ico_world_reboot.png";
+
+// 캐릭터 카드 배경
+export { default as xmas } from "./xmas_03_2560x1440.jpg";
+
+// 검색 아이콘
+export { default as searchIcon } from "./magnifier_icon.png";
+
+// 체크 아이콘
+export { default as checkIcon } from "./check-icon.png";
+
+// 메이플 로고
+export { default as mapleLogo } from "./maplelogo.png";
+
+// 로딩 (배경화면)
+// export { default as loadingBg } from "./loading.gif";

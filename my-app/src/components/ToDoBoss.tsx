@@ -131,7 +131,8 @@ const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
   cursor: pointer;
 
   &:hover {
-    border: 1px solid #f38a3c;
+    border: 1px solid #ff890a;
+    color: #ff890a;
   }
 
   .img {

@@ -21,10 +21,27 @@ ${reset}
 		font-weight: 400;
 		font-size: 1.6rem;
 		letter-spacing: -.5px;
-		-webkit-user-select:none;
-  	-moz-user-select:none;
-  	-ms-user-select:none;
-  	user-select:none;
+		
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
+	}
+	img {
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-o-user-select: none;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
 	}
 	ol, ul {
 		list-style: none;

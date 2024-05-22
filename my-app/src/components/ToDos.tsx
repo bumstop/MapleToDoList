@@ -4,6 +4,8 @@ import { ToDoBoss } from "./ToDoBoss";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import { ToDoSymbolSetting } from "./ToDoSymbolSetting";
+import { ToDoBossSetting } from "./ToDoBossSetting";
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
@@ -11,21 +13,18 @@ export function ToDos() {
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
-  const listOpenedCharacter = listedCharacterName.find(
-    (key) => characterList[key].isToDoOpened
-  );
+  const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
   const tabUl = useRef<HTMLUListElement>(null);
   const symbolTab = useRef<HTMLLIElement>(null);
   const bossTab = useRef<HTMLLIElement>(null);
+  const [settingMode, setSettingMode] = useState(false);
   const [tabNow, setTabNow] = useState(symbolTab);
   let tabPrevRef = useRef(tabNow.current);
 
   const [hoverLineWidth, setHoverLineWidth] = useState<number>(69.59);
   const [hoverLineLeft, setHoverLineLeft] = useState<number>(0);
 
-  const liMouseEnterEvent = (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>
-  ) => {
+  const liMouseEnterEvent = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const target = e.target as HTMLLIElement;
 
     if (tabUl.current) {
@@ -90,6 +89,10 @@ export function ToDos() {
   // 이전에 선택된 탭 폰트 normal, 현재 선택된 탭 폰트 bold 적용
 
   useEffect(() => {
+    setTabNow(symbolTab);
+  }, [listOpenedCharacter]);
+
+  useEffect(() => {
     if (tabPrevRef.current) {
       tabPrevRef.current.style.cssText = `
       font-weight: normal;
@@ -103,7 +106,26 @@ export function ToDos() {
         font-weight: bold;
       `;
     }
+
+    let targetRect: DOMRect;
+    let relativeLeft: number = 0;
+    let targetWidth: number = 0;
+    if (tabUl.current) {
+      const tabUlRect = tabUl.current.getBoundingClientRect(); // 부모 ul
+
+      if (tabNow.current) {
+        targetRect = tabNow.current.getBoundingClientRect();
+        targetWidth = targetRect.width;
+        relativeLeft = targetRect.left - tabUlRect.left;
+      }
+      setHoverLineLeft(relativeLeft);
+      setHoverLineWidth(targetWidth);
+    }
   }, [tabNow]);
+
+  useEffect(() => {
+    console.log(settingMode);
+  }, [settingMode]);
 
   return (
     <ToDosDiv>
@@ -131,8 +153,13 @@ export function ToDos() {
         </div>
         <HoverLine $width={hoverLineWidth} $left={hoverLineLeft} />
       </TabDiv>
-      {tabNow === symbolTab && <ToDoSymbol />}
-      {tabNow === bossTab && <ToDoBoss />}
+      <div className="setting-wrap">
+        <ListSettingButton onClick={() => setSettingMode((prev) => !prev)}>
+          수정하기
+        </ListSettingButton>
+      </div>
+      {tabNow === symbolTab && (settingMode ? <ToDoSymbolSetting /> : <ToDoSymbol />)}
+      {tabNow === bossTab && (settingMode ? <ToDoBossSetting /> : <ToDoBoss />)}
     </ToDosDiv>
   );
 }
@@ -140,6 +167,13 @@ export function ToDos() {
 const ToDosDiv = styled.div`
   font-family: "Maplestory", sans-serif;
   font-weight: bold;
+  & {
+    .setting-wrap {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+    }
+  }
 `;
 
 const TabDiv = styled.div`
@@ -162,6 +196,14 @@ const TabDiv = styled.div`
   }
   .header {
     padding: 10px;
+  }
+`;
+const ListSettingButton = styled.button`
+  padding: 5px 10px;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: #ccc;
   }
 `;
 
