@@ -65,7 +65,8 @@ export function CharacterSelected() {
 }
 
 const CharacterSelectedDiv = styled.div`
-  position: relative;
+  position: sticky;
+  top: 10px;
   width: 100%;
   min-height: 150px;
   padding: 10px;

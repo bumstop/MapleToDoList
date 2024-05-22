@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { symbol } from "../data/symbol";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -9,6 +9,7 @@ import {
   toggleIsClearState,
 } from "../redux/characterListSlice";
 import { useEffect } from "react";
+import { checkIcon } from "../assets/images";
 
 export function ToDoSymbol() {
   const characterList = useSelector((state: RootState) => state.characterList);
@@ -39,20 +40,21 @@ export function ToDoSymbol() {
       (key) => toDoSymbolWeeklyAcane[key].isListed
     );
   }
-  useEffect(() => {
-    if (listOpenedCharacter) {
-      console.log(toDoSymbolDailyAcane);
-      Object.keys(toDoSymbolDailyAcane).map((v) => console.log(toDoSymbolDailyAcane[v].isClear));
-    }
-  }, [toDoSymbolDailyAcane]);
-  
+
+  // useEffect(() => {
+  //   if (listOpenedCharacter) {
+  //     console.log(toDoSymbolDailyAcane);
+  //     Object.keys(toDoSymbolDailyAcane).map((v) => console.log(toDoSymbolDailyAcane[v].isClear));
+  //   }
+  // }, [toDoSymbolDailyAcane]);
+
   return (
     <ToDoSymbolDiv>
       {/* 일간 */}
       <div className="daily">
         {/* 아케인 일일퀘스트 */}
         <div className="daily-acane">
-          <div>아케인 일일퀘스트</div>
+          <div className="cate-head">아케인 일일퀘스트</div>
           {listedToDoSymbolDailyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.daily.acane}
@@ -66,7 +68,7 @@ export function ToDoSymbol() {
 
         {/* 그란디스 일일퀘스트 */}
         <div className="daily-grandis">
-          <div>그란디스 일일퀘스트</div>
+          <div className="cate-head">그란디스 일일퀘스트</div>
           {listedToDoSymbolDailyGrandis.length > 0 ? (
             <ContentsSection
               data={symbol.daily.grandis}
@@ -83,7 +85,7 @@ export function ToDoSymbol() {
       <div className="weekly">
         {/* 아케인 주간퀘스트 */}
         <div className="weekly-acane">
-          <div>아케인 주간컨텐츠</div>
+          <div className="cate-head">아케인 주간컨텐츠</div>
           {listedToDoSymbolWeeklyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.weekly.acane}
@@ -101,6 +103,12 @@ export function ToDoSymbol() {
 
 const ToDoSymbolDiv = styled.div`
   padding: 10px;
+
+  & {
+    .cate-head {
+      font-size: 20px;
+    }
+  }
 `;
 
 interface DataType {
@@ -112,15 +120,19 @@ interface DataType {
 function ContentsSection({ data, calledBy, toDos }: DataType) {
   const dispatch = useDispatch();
   const listedToDos = Object.keys(toDos).filter((key) => toDos[key].isListed);
+  const clearedToDos = Object.keys(toDos).filter((key) => toDos[key].isClear);
 
   return (
     <ContentsSectionDiv>
       {data.map((v) => {
         if (listedToDos.includes(v.text)) {
+          const isClear = clearedToDos.includes(v.text) ? true : false;
+
           return (
             <ContentsBoxDiv
               key={v.text}
               onClick={() => dispatch(toggleIsClearState([v.text, calledBy]))}
+              $isClear={isClear}
             >
               <div className="img">
                 <img src={v.image} />
@@ -136,25 +148,30 @@ function ContentsSection({ data, calledBy, toDos }: DataType) {
 
 const ContentsSectionDiv = styled.div`
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 5px;
-  margin: 10px 0 30px;
+  margin: 20px 0 40px;
 `;
 
-const ContentsBoxDiv = styled.div`
+const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
   display: flex;
   align-items: center;
-  width: 200px;
+  flex-basis: calc((100% / 3) - (5px * 2 / 3));
+  // 100% / (아이템갯수) - (gap * gap갯수 / 아이템갯수)
+  position: relative;
   padding: 5px;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
 
   &:hover {
-    background-color: #e5e7eb;
+    border: 1px solid #f38a3c;
   }
+
   .img {
+    position: relative;
     width: 44px;
     height: 44px;
   }
@@ -166,4 +183,21 @@ const ContentsBoxDiv = styled.div`
     flex-grow: 1;
     text-align: center;
   }
+
+  ${({ $isClear }) =>
+    $isClear &&
+    css`
+      color: #ddd;
+
+      .img::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: no-repeat center/90% url(${checkIcon});
+        backdrop-filter: grayscale(100%);
+      }
+    `}
 `;

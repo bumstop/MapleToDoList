@@ -21,6 +21,10 @@ ${reset}
 		font-weight: 400;
 		font-size: 1.6rem;
 		letter-spacing: -.5px;
+		-webkit-user-select:none;
+  	-moz-user-select:none;
+  	-ms-user-select:none;
+  	user-select:none;
 	}
 	ol, ul {
 		list-style: none;

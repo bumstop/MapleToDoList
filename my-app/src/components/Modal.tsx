@@ -6,9 +6,7 @@ import { modalClose } from "../redux/modalStateSlice";
 
 export function Modal() {
   const dispatch = useDispatch();
-  const modalIsOpen = useSelector(
-    (state: RootState) => state.modalState.isOpen
-  );
+  const modalIsOpen = useSelector((state: RootState) => state.modalState.isOpen);
 
   const searchInfo = useSelector((state: RootState) => state.searchInfo);
   const characterImage = searchInfo.character_image;
@@ -49,8 +47,7 @@ const ModalDiv = styled.div<{ $isOpen: boolean }>`
   height: 100%;
   backdrop-filter: blur(5px);
   z-index: 99;
-  display: ${(props: { $isOpen: boolean }) =>
-    props.$isOpen ? "block" : "none"};
+  display: ${({$isOpen}) => ($isOpen ? "block" : "none")};
 `;
 const ContentWrapDiv = styled.div`
   position: absolute;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { boss } from "../data/boss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
@@ -8,6 +8,7 @@ import {
   ToDoDetailStateType,
   toggleIsClearState,
 } from "../redux/characterListSlice";
+import { checkIcon } from "../assets/images";
 
 export function ToDoBoss() {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ export function ToDoBoss() {
   return (
     <ToDoBossDiv>
       <div className="daily">
-        <div>일간</div>
+        <div className="cate-head">일간</div>
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.daily} toDos={toDoBossDaily} calledBy="daily-boss" />
         ) : (
@@ -47,7 +48,7 @@ export function ToDoBoss() {
         )}
       </div>
       <div className="weekly">
-        <div>주간</div>
+        <div className="cate-head">주간</div>
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.weekly} toDos={toDoBossWeekly} calledBy="weekly-boss" />
         ) : (
@@ -55,7 +56,7 @@ export function ToDoBoss() {
         )}
       </div>
       <div className="monthly">
-        <div>월간</div>
+        <div className="cate-head">월간</div>
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.monthly} toDos={toDoBossMonthly} calledBy="monthly-boss" />
         ) : (
@@ -68,6 +69,12 @@ export function ToDoBoss() {
 
 const ToDoBossDiv = styled.div`
   padding: 10px;
+
+  & {
+    .cate-head {
+      font-size: 20px;
+    }
+  }
 `;
 
 interface DataType {
@@ -79,15 +86,19 @@ interface DataType {
 function ContentsSection({ data, toDos, calledBy }: DataType) {
   const dispatch = useDispatch();
   const listedToDos = Object.keys(toDos).filter((key) => toDos[key].isListed);
+  const clearedToDos = Object.keys(toDos).filter((key) => toDos[key].isClear);
 
   return (
     <ContentsSectionDiv>
       {data.map((v) => {
         if (listedToDos.includes(v.name)) {
+          const isClear = clearedToDos.includes(v.name) ? true : false;
+
           return (
             <ContentsBoxDiv
               key={v.name}
               onClick={() => dispatch(toggleIsClearState([v.name, calledBy]))}
+              $isClear={isClear}
             >
               <div className="img">
                 <img src={v.image} />
@@ -103,32 +114,55 @@ function ContentsSection({ data, toDos, calledBy }: DataType) {
 
 const ContentsSectionDiv = styled.div`
   display: flex;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 5px;
   margin: 10px 0 30px;
 `;
 
-const ContentsBoxDiv = styled.div`
+const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
   display: flex;
   align-items: center;
-  width: 400px;
+  flex-basis: calc((100% / 3) - (5px * 2 / 3));
   padding: 5px;
   border: 1px solid #e5e7eb;
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: transparent;
   cursor: pointer;
 
   &:hover {
-    background-color: #e5e7eb;
+    border: 1px solid #f38a3c;
+  }
+
+  .img {
+    position: relative;
+    width: 58px;
+    height: 58px;
   }
 
   img {
-    width: 58px;
-    height: 58px;
+    width: 100%;
+    height: 100%;
     border-radius: 0.5rem;
   }
   .name {
     flex-grow: 1;
     text-align: center;
   }
+  ${({ $isClear }) =>
+    $isClear &&
+    css`
+      color: #ddd;
+
+      .img::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: no-repeat center/80% url(${checkIcon});
+        backdrop-filter: grayscale(100%);
+      }
+    `}
 `;

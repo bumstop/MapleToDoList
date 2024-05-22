@@ -50,14 +50,14 @@ export function CharacterList() {
   );
 }
 const CharacterListDiv = styled.div`
-  position: relative;
+  position: sticky;
+  top: 170px;
   width: 100%;
   padding: 10px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
 
-  flex-grow: 1;
 
   & {
     .searchbox-wrap {

@@ -127,7 +127,7 @@ const CharacterCardDiv = styled.div`
     height: 58.5%;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
-    background: #000 no-repeat center/cover url(${xmas});
+    background: no-repeat center/cover url(${xmas});
     opacity: 0.6;
   }
 
