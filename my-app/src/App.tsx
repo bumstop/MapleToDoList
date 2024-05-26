@@ -1,32 +1,33 @@
 import styled from "styled-components";
-import { Main } from "./Main";
-import { Modal } from "../components/Modal";
-import { CharacterList } from "../components/CharacterList";
-import { Footer } from "./Footer";
-import { CharacterSelected } from "../components/CharacterSelected";
+import { CharacterSelected } from "./components/CharacterSelected";
+import { CharacterList } from "./components/CharacterList";
+import { ToDos } from "./components/ToDos";
+import { Modal } from "./components/Modal";
+import { Footer } from "./layout/Footer";
 
-export function Layout() {
+
+export function App() {
   return (
-    <>
-      <AppBackground>
+    <div className="app">
+      <Main>
         {/* 앱 사이드 */}
         <AppAside>
           <CharacterSelected />
           <CharacterList />
         </AppAside>
-        {/* 앱 바디 */}
-        <AppBody>
-          <Main />
-        </AppBody>
+        {/* 앱 메인 */}
+        <AppMain>
+          <ToDos />
+        </AppMain>
         {/* 모달창 */}
         <Modal />
-      </AppBackground>
+      </Main>
       <Footer />
-    </>
+    </div>
   );
 }
 
-const AppBackground = styled.div`
+const Main = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
@@ -38,7 +39,7 @@ const AppBackground = styled.div`
   background-color: #f0f2f5;
 `;
 
-const AppBody = styled.div`
+const AppMain = styled.div`
   width: 860px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;

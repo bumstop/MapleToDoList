@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { SearchInfoState } from "./searchInfoSlice";
 
-export interface ToDoDetailStateType {
+export interface TaskInterface {
   isListed: boolean;
   isClear: boolean;
 }
@@ -31,60 +31,28 @@ export interface CharacterListState {
     toDoList: {
       symbol: {
         daily: {
-          acane: {
-            [key: string]: ToDoDetailStateType;
-          };
-          grandis: {
-            [key: string]: ToDoDetailStateType;
-          };
+          acane: Record<string, TaskInterface>;
+          grandis: Record<string, TaskInterface>;
         };
         weekly: {
-          acane: {
-            [key: string]: ToDoDetailStateType;
-          };
+          acane: Record<string, TaskInterface>;
         };
       };
       boss: {
-        daily: {
-          [key: string]: ToDoDetailStateType;
-        };
-        weekly: {
-          [key: string]: ToDoDetailStateType;
-        };
-        monthly: {
-          [key: string]: ToDoDetailStateType;
-        };
+        daily: Record<string, TaskInterface>;
+        weekly: Record<string, TaskInterface>;
+        monthly: Record<string, TaskInterface>;
       };
     };
   };
 }
 
-const initialState: CharacterListState = {
-  // nickname: {
-  //   character_class: "",
-  //   character_guild_name: "",
-  //   character_image: "",
-  //   character_level: 0,
-  //   world_name: "",
-  //   guild_mark: "",
-  //   isToDoOpened: false,
-  //   toDoList: {
-  //     symbol: {
-  //       daily: {
-  //         acane: {},
-  //         grandis: {},
-  //       },
-  //       weekly: {
-  //         acane: {},
-  //       },
-  //     },
-  //     boss: {
-  //       daily: {},
-  //       weekly: {},
-  //       monthly: {},
-  //     },
-  //   },
-  // },
+const initialState: CharacterListState = {};
+
+const resetIsClear = (tasks: Record<string, TaskInterface>) => {
+  for (const task in tasks) {
+    tasks[task].isClear = false;
+  }
 };
 
 export const characterListSlice = createSlice({
@@ -361,7 +329,7 @@ export const characterListSlice = createSlice({
       const listOpenedName = Object.keys(state).find((key) => state[key].isToDoOpened);
       if (listOpenedName) {
         const listOpenedCharacter = state[listOpenedName];
-        let target: ToDoDetailStateType;
+        let target: TaskInterface;
 
         switch (action.payload[1]) {
           case "daily-acane":
@@ -402,7 +370,7 @@ export const characterListSlice = createSlice({
       const listOpenedName = Object.keys(state).find((key) => state[key].isToDoOpened);
       if (listOpenedName) {
         const listOpenedCharacter = state[listOpenedName];
-        let target: ToDoDetailStateType;
+        let target: TaskInterface;
 
         switch (action.payload[1]) {
           case "daily-acane":
@@ -435,6 +403,26 @@ export const characterListSlice = createSlice({
             target.isClear = target.isClear ? false : true;
             break;
         }
+      }
+    },
+
+    // toDoList 주기별 isClear 속성 초기화
+    resetDailyIsClear(state) {
+      for (const character in state) {
+        resetIsClear(state[character].toDoList.symbol.daily.acane);
+        resetIsClear(state[character].toDoList.symbol.daily.grandis);
+        resetIsClear(state[character].toDoList.boss.daily);
+      }
+    },
+    resetWeeklyIsClear(state) {
+      for (const character in state) {
+        resetIsClear(state[character].toDoList.symbol.weekly.acane);
+        resetIsClear(state[character].toDoList.boss.weekly);
+      }
+    },
+    resetMonthlyIsClear(state) {
+      for (const character in state) {
+        resetIsClear(state[character].toDoList.boss.monthly);
       }
     },
   },

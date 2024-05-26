@@ -1,18 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import reportWebVitals from "./reportWebVitals";
-import { HashRouter, Route, Routes } from "react-router-dom";
-import { Layout } from "./layout/Layout";
-import { Home } from "./pages/Home";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import GlobalStyles from "./styles/GlobalStyle";
+import { App } from "./App";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 const persistor = persistStore(store);
 
 root.render(
@@ -20,13 +16,7 @@ root.render(
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
         <GlobalStyles />
-        <HashRouter>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-            </Route>
-          </Routes>
-        </HashRouter>
+        <App />
       </PersistGate>
     </Provider>
   </React.StrictMode>

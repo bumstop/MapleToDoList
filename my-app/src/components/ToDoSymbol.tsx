@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ContentsNothing } from "./ContentsNothing";
 import {
-  ToDoDetailStateType,
+  TaskInterface,
   ToDoCategoryType,
   toggleIsClearState,
 } from "../redux/characterListSlice";
@@ -15,9 +15,9 @@ export function ToDoSymbol() {
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
   const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
-  let toDoSymbolDailyAcane: { [key: string]: ToDoDetailStateType } = {};
-  let toDoSymbolDailyGrandis: { [key: string]: ToDoDetailStateType } = {};
-  let toDoSymbolWeeklyAcane: { [key: string]: ToDoDetailStateType } = {};
+  let toDoSymbolDailyAcane: { [key: string]: TaskInterface } = {};
+  let toDoSymbolDailyGrandis: { [key: string]: TaskInterface } = {};
+  let toDoSymbolWeeklyAcane: { [key: string]: TaskInterface } = {};
   let listedToDoSymbolDailyAcane: string[] = [];
   let listedToDoSymbolDailyGrandis: string[] = [];
   let listedToDoSymbolWeeklyAcane: string[] = [];
@@ -106,7 +106,7 @@ const ToDoSymbolDiv = styled.div`
 interface DataType {
   data: { text: string; image: string }[];
   calledBy: ToDoCategoryType;
-  toDos: { [key: string]: ToDoDetailStateType };
+  toDos: { [key: string]: TaskInterface };
 }
 
 function ContentsSection({ data, calledBy, toDos }: DataType) {

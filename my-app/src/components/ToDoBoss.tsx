@@ -5,7 +5,7 @@ import { RootState } from "../redux/store";
 import { ContentsNothing } from "./ContentsNothing";
 import {
   ToDoCategoryType,
-  ToDoDetailStateType,
+  TaskInterface,
   toggleIsClearState,
 } from "../redux/characterListSlice";
 import { checkIcon } from "../assets/images";
@@ -15,9 +15,9 @@ export function ToDoBoss() {
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
   const listOpenedCharacter = listedCharacterName.find((key) => characterList[key].isToDoOpened);
-  let toDoBossDaily: { [key: string]: ToDoDetailStateType } = {};
-  let toDoBossWeekly: { [key: string]: ToDoDetailStateType } = {};
-  let toDoBossMonthly: { [key: string]: ToDoDetailStateType } = {};
+  let toDoBossDaily: { [key: string]: TaskInterface } = {};
+  let toDoBossWeekly: { [key: string]: TaskInterface } = {};
+  let toDoBossMonthly: { [key: string]: TaskInterface } = {};
   let listedTodoBossDaily: string[] = [];
   let listedTodoBossWeekly: string[] = [];
   let listedTodoBossMonthly: string[] = [];
@@ -79,7 +79,7 @@ const ToDoBossDiv = styled.div`
 interface DataType {
   data: { name: string; image: string }[];
   calledBy: ToDoCategoryType;
-  toDos: { [key: string]: ToDoDetailStateType };
+  toDos: { [key: string]: TaskInterface };
 }
 
 function ContentsSection({ data, toDos, calledBy }: DataType) {
