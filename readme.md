@@ -1,38 +1,62 @@
 # <img src="./readme_image/maplelogo.png" width="25" height="25" vertical-align="top"/> 메할일 - MapleToDoList
 
+## 기술 스택
+<!-- <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white"> -->
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+<img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white">  
+<img src="https://img.shields.io/badge/styledcomponents-1572B6?style=for-the-badge&logo=styledcomponents&logoColor=white">  
+
+
+
+
+
+
 ## 📄 페이지 구성
 
-- 상단 <메인 로고 및 검색창>  
-  넥슨 오픈 API를 통해 캐릭터 닉네임을 검색 할 수 있는 검색창
+### 메인 <컨텐츠>
 
-- 메인 <컨텐츠>  
-  페이지에 따라 변경되는 컨텐츠 영역
+- 좌측
 
-- 하단 <기타 정보>  
-  기타 정보
+1. 캐릭터 정보
+   - 현재 선택된 캐릭터의 정보
+   - 캐릭터별 간단한 메모
+2. 캐릭터 리스트
+   - 캐릭터 검색창
+   - 리스트에 추가된 캐릭터의 카드들
 
-### 🔒 로그인 및 회원가입(계정 등록) 페이지
+- 우측
 
+1. 탭
+   - 심볼탭과 보스탭으로 구성 (현재 선택된 탭에 따라 하단의 컨텐츠가 변경됨)
+2. 수정 버튼
+   - 하단의 컨텐츠를 ToDoList와 리스트 수정으로 토글시켜주는 버튼
+3. ToDoList컨텐츠
+   1. ToDoList
+      - 클릭을 통해 해당 항목의 상태를 완료 또는 미완료로 변경
+      - 컨텐츠들은 정해진 주기마다 완료상태가 초기화됨
+   2. 리스트 수정하기
+      - 클릭을 통해 해당 항목을 ToDoList에 추가 또는 제거
 
-### 📑 메인(Todos) 페이지 
+### 모달 <검색 정보>
+
+- 검색한 캐릭터의 카드 생성 및 노출
+- 즐겨찾기를 통해 리스트에 해당 캐릭터 추가 가능
+
+### 하단 <기타 정보>
+
+기타 정보
+
+### 📑 메인(Todos) 페이지
 
 - 캐릭터 별 Todos
 
-  - 보스 Todos
-    일일, 주간, 월간
+1. 보스 Todos
+   일일, 주간, 월간
 
-  - 심볼  Todos  
-    [일일] 아케인리버, 그란디스  
-    [주간] 아케인리버  
+2. 심볼 Todos  
+   [일일] 아케인리버, 그란디스  
+   [주간] 아케인리버
 
-  - 컨텐츠 Todos  
-    [일일] 몬스터파크(일반 & 익스트림)  
-    [주간] 하이마운틴, 수로, 무릉도장
-
-### 🔍 검색 결과 페이지
-
-- 검색한 캐릭터 이미지 및 정보 를 메인 정보로 시각화
-- 부 캐릭터 리스트를 서브 정보로 시각화
-
-- 각 캐릭터 정보는 코디(외형), 서버, 닉네임, 레벨, 직업, 길드, 마지막 활동일 정보를 포함
-- `캐릭터 추가` 버튼을 통해 리스트에 캐릭터를 추가하는 기능 부여
+3. 컨텐츠 Todos (추가 예정)
+   [일일] 몬스터파크(일반 & 익스트림)  
+   [주간] 하이마운틴, 수로, 무릉도장
