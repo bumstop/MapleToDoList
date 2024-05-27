@@ -125,10 +125,6 @@ export function ToDos() {
     }
   }, [tabNow]);
 
-  useEffect(() => {
-    console.log(settingMode);
-  }, [settingMode]);
-
   return (
     <ToDosDiv>
       <TabDiv>

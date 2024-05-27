@@ -11,7 +11,7 @@ export function Footer() {
 
 const FooterDiv = styled.div`
   width: 100%;
-  padding: 10px 0;
+  padding: 10px 0 20px;
   text-align: center;
   color: #999;
   background-color: #f0f2f5;

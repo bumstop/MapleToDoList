@@ -4,9 +4,11 @@ import { CharacterList } from "./components/CharacterList";
 import { ToDos } from "./components/ToDos";
 import { Modal } from "./components/Modal";
 import { Footer } from "./layout/Footer";
-
+import useResetTaskIsClear from "./func/useResetTaskIsClear";
 
 export function App() {
+  useResetTaskIsClear();
+
   return (
     <div className="app">
       <Main>

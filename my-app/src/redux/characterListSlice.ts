@@ -27,6 +27,9 @@ export interface CharacterListState {
     // 투두리스트 오픈상태
     isToDoOpened: boolean;
 
+    // 메모
+    memo: string;
+
     // 투두리스트
     toDoList: {
       symbol: {
@@ -59,9 +62,8 @@ export const characterListSlice = createSlice({
   name: "CharacterList",
   initialState: initialState,
   reducers: {
+    /** 캐릭터를 리스트에 추가함 - 기본정보, 투두리스트, 선택여부, 메모 정보 */
     addCharacterList(state, action: PayloadAction<SearchInfoState>) {
-      // state.nickname && delete state.nickname;
-
       state[action.payload.character_name] = {
         character_class: action.payload.character_class,
         character_guild_name: action.payload.character_guild_name,
@@ -71,7 +73,7 @@ export const characterListSlice = createSlice({
         guild_mark: action.payload.guild_mark,
 
         isToDoOpened: false,
-
+        memo: "",
         toDoList: {
           symbol: {
             daily: {
@@ -324,6 +326,11 @@ export const characterListSlice = createSlice({
       state[action.payload].isToDoOpened = true;
     },
 
+    /** 캐릭터명과 문자열을 입력받아 메모를 수정함 */
+    modifyMemo(state, action: PayloadAction<string, string>) {
+      state[action.payload[0]].memo = action.payload[1];
+    },
+
     /** isListed 속성을 바꿀 대상과 대상이 속해있는 카테고리를 입력받아 변경 */
     toggleIsListedState(state, action: PayloadAction<[string, ToDoCategoryType]>) {
       const listOpenedName = Object.keys(state).find((key) => state[key].isToDoOpened);
@@ -407,23 +414,31 @@ export const characterListSlice = createSlice({
     },
 
     // toDoList 주기별 isClear 속성 초기화
-    resetDailyIsClear(state) {
+    resetDailyClear(state) {
       for (const character in state) {
         resetIsClear(state[character].toDoList.symbol.daily.acane);
         resetIsClear(state[character].toDoList.symbol.daily.grandis);
         resetIsClear(state[character].toDoList.boss.daily);
       }
+      alert("일일 컨텐츠가 초기화 되었습니다.");
     },
-    resetWeeklyIsClear(state) {
+    resetWeeklyByMondayClear(state) {
       for (const character in state) {
         resetIsClear(state[character].toDoList.symbol.weekly.acane);
+      }
+      alert("주간 컨텐츠(월) 가 초기화 되었습니다.");
+    },
+    resetWeeklyByThursdayClear(state) {
+      for (const character in state) {
         resetIsClear(state[character].toDoList.boss.weekly);
       }
+      alert("주간 컨텐츠(목) 가 초기화 되었습니다.");
     },
-    resetMonthlyIsClear(state) {
+    resetMonthlyClear(state) {
       for (const character in state) {
         resetIsClear(state[character].toDoList.boss.monthly);
       }
+      alert("월간 컨텐츠가 초기화 되었습니다.");
     },
   },
 });
@@ -434,4 +449,8 @@ export let {
   changeToDoOpenState,
   toggleIsListedState,
   toggleIsClearState,
+  resetDailyClear,
+  resetMonthlyClear,
+  resetWeeklyByMondayClear,
+  resetWeeklyByThursdayClear,
 } = characterListSlice.actions;

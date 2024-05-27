@@ -28,33 +28,43 @@ export function CharacterSelected() {
     <CharacterSelectedDiv>
       {listOpenedCharacter ? (
         <>
-          {/* 캐릭터 이미지 */}
-          <div className="image-wrap">
-            <img src={character_image} />
+          <div className="character-selected">
+            {/* 캐릭터 이미지 */}
+            <div className="image-wrap">
+              <img src={character_image} />
+            </div>
+            {/* 캐릭터 정보 */}
+            <div className="info-wrap">
+              <div className="info info-1">
+                <div className="name">{listOpenedCharacter}</div>
+                <div className="worldname-wrap">
+                  <img src={returnWorldIcon(world_name)} />
+                  <div>{world_name}</div>
+                </div>
+              </div>
+              <div className="info info-2">
+                <div className="level">Lv. {character_level}</div>
+                <DivideBar />
+                <div className="class">{character_class}</div>
+                {character_guild_name && <DivideBar />}
+                <div className="guildname-wrap">
+                  {character_guild_name && (
+                    <>
+                      <img src={guild_mark} />
+                      <span>{character_guild_name}</span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
-          {/* 캐릭터 정보 */}
-          <div className="info-wrap">
-            <div className="info info-1">
-              <div className="name">{listOpenedCharacter}</div>
-              <div className="worldname-wrap">
-                <img src={returnWorldIcon(world_name)} />
-                <div>{world_name}</div>
-              </div>
+          {/* 메모 */}
+          <div className="memo-wrap">
+            <div className="memo-head">
+              <div>메모</div>
+              <button className="modify-btn">수정</button>
             </div>
-            <div className="info info-2">
-              <div className="level">Lv. {character_level}</div>
-              <DivideBar />
-              <div className="class">{character_class}</div>
-              {character_guild_name && <DivideBar />}
-              <div className="guildname-wrap">
-                {character_guild_name && (
-                  <>
-                    <img src={guild_mark} />
-                    <span>{character_guild_name}</span>
-                  </>
-                )}
-              </div>
-            </div>
+            <div className="memo"></div>
           </div>
         </>
       ) : (
@@ -70,12 +80,14 @@ const CharacterSelectedDiv = styled.div`
   width: 100%;
   min-height: 150px;
   padding: 10px;
-  display: flex;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
 
   & {
+    .character-selected {
+      display: flex;
+    }
     .image-wrap {
       flex-shrink: 0;
       width: 128px;
@@ -147,6 +159,23 @@ const CharacterSelectedDiv = styled.div`
           height: 16px;
           margin-right: 4px;
         }
+      }
+    }
+
+    .memo-wrap {
+      padding: 10px 30px 10px;
+
+      .memo-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modify-btn {
+        border-radius: 0.5rem;
+        /* background-color: #; */
+      }
+      .memo {
+
       }
     }
   }

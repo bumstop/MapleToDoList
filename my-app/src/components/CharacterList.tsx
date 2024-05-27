@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { SearchBox } from "./SearchBox";
 import { CharacterCard } from "./CharacterCard";
@@ -11,6 +11,15 @@ export function CharacterList() {
   const dispatch = useDispatch();
   const characterList = useSelector((state: RootState) => state.characterList);
   const ListedCharacterName = Object.keys(characterList);
+  const characterListRef = useRef<HTMLDivElement>(null);
+  const [stickyTop, setStickyTop] = useState(0);
+
+  useEffect(() => {
+    if (characterListRef.current) {
+      const divRect = characterListRef.current.getBoundingClientRect();
+      setStickyTop(divRect.top);
+    }
+  }, []);
 
   function openToDoList(e: React.MouseEvent<HTMLElement, MouseEvent>, name: string) {
     const target = e.target as HTMLElement;
@@ -23,7 +32,7 @@ export function CharacterList() {
     }
   }
   return (
-    <CharacterListDiv>
+    <CharacterListDiv ref={characterListRef} $top={stickyTop}>
       <div className="searchbox-wrap">
         <SearchBox />
       </div>
@@ -49,15 +58,14 @@ export function CharacterList() {
     </CharacterListDiv>
   );
 }
-const CharacterListDiv = styled.div`
+const CharacterListDiv = styled.div<{$top: number}>`
   position: sticky;
-  top: 170px;
+  top: ${({$top}) => `${$top}px`};
   width: 100%;
   padding: 10px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
-
 
   & {
     .searchbox-wrap {
