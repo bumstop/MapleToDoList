@@ -62,7 +62,7 @@ const CharacterListDiv = styled.div<{ $top: number }>`
   position: sticky;
   top: ${({ $top }) => `${$top}px`};
   width: 100%;
-  padding: 10px;
+  padding: 10px 10px 15px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;

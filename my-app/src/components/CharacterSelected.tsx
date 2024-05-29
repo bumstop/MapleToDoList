@@ -34,26 +34,33 @@ export function CharacterSelected() {
 
   const [isModify, setIsModify] = useState(false);
   const modifyTextarea = useRef<HTMLTextAreaElement>(null);
-  const modifyMaxLength = 200;
+  const modifyMaxLength = 100;
   const [modifyTextLength, setModifyTextLength] = useState(0);
-
-  if (modifyTextarea.current) {
-    modifyTextarea.current.value = character_memo;
-  }
 
   const saveModifyMemo = () => {
     if (listOpenedCharacter && modifyTextarea.current) {
       const memoText = modifyTextarea.current.value;
       dispatch(modifyMemo([listOpenedCharacter, memoText]));
+
+      console.log(memoText);
     }
     setIsModify(false);
   };
+
   const cancelModifyMemo = () => {
     if (modifyTextarea.current) {
       modifyTextarea.current.value = character_memo;
     }
     setIsModify(false);
   };
+
+  // 메모 수정창 기본값, 길이 랜더링
+  useEffect(() => {
+    if (modifyTextarea.current) {
+      modifyTextarea.current.value = character_memo;
+      setModifyTextLength(modifyTextarea.current.textLength);
+    }
+  }, [isModify]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -238,8 +245,7 @@ const CharacterSelectedDiv = styled.div`
       .memo {
         position: relative;
         width: 100%;
-        min-height: 120px;
-        max-height: 200px;
+        height: 130px;
         border: 1px solid #e5e7eb;
         border-radius: 0.5rem;
         font-family: "Maplestory";
@@ -251,6 +257,7 @@ const CharacterSelectedDiv = styled.div`
         bottom: 5px;
         right: 5px;
         display: flex;
+        align-items: center;
         gap: 3px;
       }
     }
@@ -270,19 +277,30 @@ const ModifyBtn = styled.button<{ $isModify: boolean }>`
 
 const MemoDiv = styled.div<{ $isModify: boolean }>`
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   padding: 10px;
   border-radius: inherit;
+  white-space: pre-wrap;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
   visibility: ${({ $isModify }) => ($isModify ? "hidden" : "visible")};
 `;
 
 const ModifyMemoTextarea = styled.textarea<{ $isModify: boolean }>`
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 25px);
   padding: 10px;
   border-radius: inherit;
+  white-space: pre-wrap;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
   visibility: ${({ $isModify }) => ($isModify ? "visible" : "hidden")};
 `;
 
