@@ -46,7 +46,7 @@ const CharacterSelectedNothingDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 295px;
   font-family: "Maplestory";
   font-weight: normal;
 `;

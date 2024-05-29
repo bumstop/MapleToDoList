@@ -1,12 +1,23 @@
 import styled from "styled-components";
-import { ToDoSymbol } from "./ToDoSymbol";
-import { ToDoBoss } from "./ToDoBoss";
-import { useEffect, useRef, useState } from "react";
+
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { ToDoSymbolSetting } from "./ToDoSymbolSetting";
-import { ToDoBossSetting } from "./ToDoBossSetting";
 import { settingIcon } from "../assets/images";
+import { Loading } from "./Loading";
+
+const ToDoSymbol = React.lazy(() =>
+  import("./ToDoSymbol").then(({ ToDoSymbol }) => ({ default: ToDoSymbol }))
+);
+const ToDoBoss = React.lazy(() =>
+  import("./ToDoBoss").then(({ ToDoBoss }) => ({ default: ToDoBoss }))
+);
+const ToDoSymbolSetting = React.lazy(() =>
+  import("./ToDoSymbolSetting").then(({ ToDoSymbolSetting }) => ({ default: ToDoSymbolSetting }))
+);
+const ToDoBossSetting = React.lazy(() =>
+  import("./ToDoBossSetting").then(({ ToDoBossSetting }) => ({ default: ToDoBossSetting }))
+);
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.
@@ -75,6 +86,7 @@ export function ToDos() {
 
   useEffect(() => {
     setTabNow(symbolTab);
+    setSettingMode(false);
   }, [listOpenedCharacter]);
 
   useEffect(() => {
@@ -150,13 +162,17 @@ export function ToDos() {
           <span>{settingMode ? "돌아가기" : "수정하기"}</span>
         </ListSettingButton>
       </div>
-      {tabNow === symbolTab && (settingMode ? <ToDoSymbolSetting /> : <ToDoSymbol />)}
-      {tabNow === bossTab && (settingMode ? <ToDoBossSetting /> : <ToDoBoss />)}
+      <Suspense fallback={<Loading />}>
+        {tabNow === symbolTab && (settingMode ? <ToDoSymbolSetting /> : <ToDoSymbol />)}
+        {tabNow === bossTab && (settingMode ? <ToDoBossSetting /> : <ToDoBoss />)}
+      </Suspense>
     </ToDosDiv>
   );
 }
 
 const ToDosDiv = styled.div`
+  position: relative;
+  min-height: 100%;
   font-family: "Maplestory", sans-serif;
   font-weight: bold;
   & {
