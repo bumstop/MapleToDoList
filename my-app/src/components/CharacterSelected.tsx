@@ -60,7 +60,7 @@ export function CharacterSelected() {
       modifyTextarea.current.value = character_memo;
       setModifyTextLength(modifyTextarea.current.textLength);
     }
-  }, [isModify]);
+  }, [isModify, character_memo]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
