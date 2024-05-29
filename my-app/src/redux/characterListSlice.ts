@@ -71,7 +71,6 @@ export const characterListSlice = createSlice({
         character_level: action.payload.character_level,
         world_name: action.payload.world_name,
         guild_mark: action.payload.guild_mark,
-
         isToDoOpened: false,
         memo: "",
         toDoList: {
@@ -326,8 +325,8 @@ export const characterListSlice = createSlice({
       state[action.payload].isToDoOpened = true;
     },
 
-    /** 캐릭터명과 문자열을 입력받아 메모를 수정함 */
-    modifyMemo(state, action: PayloadAction<string, string>) {
+    /** 캐릭터명과 문자열을 순서대로 입력받아 메모를 수정함 */
+    modifyMemo(state, action: PayloadAction<[string, string]>) {
       state[action.payload[0]].memo = action.payload[1];
     },
 
@@ -426,13 +425,13 @@ export const characterListSlice = createSlice({
       for (const character in state) {
         resetIsClear(state[character].toDoList.symbol.weekly.acane);
       }
-      alert("주간 컨텐츠(월) 가 초기화 되었습니다.");
+      alert("(월) 주간 컨텐츠가 초기화 되었습니다.");
     },
     resetWeeklyByThursdayClear(state) {
       for (const character in state) {
         resetIsClear(state[character].toDoList.boss.weekly);
       }
-      alert("주간 컨텐츠(목) 가 초기화 되었습니다.");
+      alert("(목) 주간 컨텐츠가 초기화 되었습니다.");
     },
     resetMonthlyClear(state) {
       for (const character in state) {
@@ -449,6 +448,7 @@ export let {
   changeToDoOpenState,
   toggleIsListedState,
   toggleIsClearState,
+  modifyMemo,
   resetDailyClear,
   resetMonthlyClear,
   resetWeeklyByMondayClear,

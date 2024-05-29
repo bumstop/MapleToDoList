@@ -78,5 +78,6 @@ export { default as mapleLogo } from "./maplelogo.png";
 // 세팅 아이콘
 export { default as settingIcon } from "./setting-icon.png";
 
-// 로딩 (배경화면)
-// export { default as loadingBg } from "./loading.gif";
+// 수정 아이콘
+export { default as modifyIcon } from "./modify-icon.png";
+export { default as modifyHoverIcon } from "./modify-hover-icon.png";

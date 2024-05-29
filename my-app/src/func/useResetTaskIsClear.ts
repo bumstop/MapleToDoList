@@ -7,7 +7,7 @@ import {
   resetWeeklyByThursdayClear,
 } from "../redux/characterListSlice";
 
-const useResetTaskIsClear = () => {
+export const useResetTaskIsClear = () => {
   const dispatch = useDispatch();
   const DAILY_RESET_KEY = "dailyResetTime";
   const WEEKLY_THURSDAY_RESET_KEY = "weeklyThursdayResetTime";
@@ -77,5 +77,3 @@ const useResetTaskIsClear = () => {
     }
   }, [dispatch]);
 };
-
-export default useResetTaskIsClear;

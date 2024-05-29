@@ -58,9 +58,9 @@ export function CharacterList() {
     </CharacterListDiv>
   );
 }
-const CharacterListDiv = styled.div<{$top: number}>`
+const CharacterListDiv = styled.div<{ $top: number }>`
   position: sticky;
-  top: ${({$top}) => `${$top}px`};
+  top: ${({ $top }) => `${$top}px`};
   width: 100%;
   padding: 10px;
   border-radius: 1rem;

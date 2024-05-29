@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../redux/store";
 import { returnWorldIcon } from "../func/returnWorldIcon";
 import { ContentsNothing } from "./ContentsNothing";
+import { modifyHoverIcon, modifyIcon } from "../assets/images";
+import { useEffect, useRef, useState } from "react";
+import { modifyMemo } from "../redux/characterListSlice";
 
 export function CharacterSelected() {
+  const dispatch = useDispatch();
+
   const characterList = useSelector((state: RootState) => state.characterList);
   const listedCharacterName = Object.keys(characterList);
   // 어떤 캐릭터의 리스트가 열려있는지, (characterList의 객체중 isToDoOpened 속성이 true인 객체)
@@ -15,6 +20,7 @@ export function CharacterSelected() {
   let character_level: number = 0;
   let world_name: string = "";
   let guild_mark: string = "";
+  let character_memo: string = "";
 
   if (listOpenedCharacter) {
     character_class = characterList[listOpenedCharacter].character_class;
@@ -23,7 +29,37 @@ export function CharacterSelected() {
     character_level = characterList[listOpenedCharacter].character_level;
     world_name = characterList[listOpenedCharacter].world_name;
     guild_mark = characterList[listOpenedCharacter].guild_mark;
+    character_memo = characterList[listOpenedCharacter].memo;
   }
+
+  const [isModify, setIsModify] = useState(false);
+  const modifyTextarea = useRef<HTMLTextAreaElement>(null);
+  const modifyMaxLength = 200;
+  const [modifyTextLength, setModifyTextLength] = useState(0);
+
+  if (modifyTextarea.current) {
+    modifyTextarea.current.value = character_memo;
+  }
+
+  const saveModifyMemo = () => {
+    if (listOpenedCharacter && modifyTextarea.current) {
+      const memoText = modifyTextarea.current.value;
+      dispatch(modifyMemo([listOpenedCharacter, memoText]));
+    }
+    setIsModify(false);
+  };
+  const cancelModifyMemo = () => {
+    if (modifyTextarea.current) {
+      modifyTextarea.current.value = character_memo;
+    }
+    setIsModify(false);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setIsModify(false);
+  }, [listOpenedCharacter]);
+
   return (
     <CharacterSelectedDiv>
       {listOpenedCharacter ? (
@@ -62,9 +98,32 @@ export function CharacterSelected() {
           <div className="memo-wrap">
             <div className="memo-head">
               <div>메모</div>
-              <button className="modify-btn">수정</button>
+              <ModifyBtn onClick={() => setIsModify(true)} $isModify={isModify} />
             </div>
-            <div className="memo"></div>
+            <div className="memo">
+              <MemoDiv $isModify={isModify}>{character_memo}</MemoDiv>
+              <ModifyMemoTextarea
+                $isModify={isModify}
+                ref={modifyTextarea}
+                maxLength={modifyMaxLength}
+                onChange={() => {
+                  if (modifyTextarea.current) {
+                    setModifyTextLength(modifyTextarea.current.textLength);
+                  }
+                }}
+              />
+              <div className="modify-btn-wrap">
+                <TextLengthDiv
+                  $isModify={isModify}
+                >{`${modifyTextLength} / ${modifyMaxLength}`}</TextLengthDiv>
+                <CancelModifyBtn onClick={() => cancelModifyMemo()} $isModify={isModify}>
+                  취소
+                </CancelModifyBtn>
+                <SaveModifyBtn onClick={() => saveModifyMemo()} $isModify={isModify}>
+                  저장
+                </SaveModifyBtn>
+              </div>
+            </div>
           </div>
         </>
       ) : (
@@ -83,6 +142,7 @@ const CharacterSelectedDiv = styled.div`
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;
   background-color: #fff;
+  z-index: 99;
 
   & {
     .character-selected {
@@ -163,22 +223,94 @@ const CharacterSelectedDiv = styled.div`
     }
 
     .memo-wrap {
-      padding: 10px 30px 10px;
+      padding: 0 30px 10px;
 
       .memo-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
-      }
-      .modify-btn {
-        border-radius: 0.5rem;
-        /* background-color: #; */
+        padding-left: 5px;
+        padding-bottom: 5px;
+        font-family: "Maplestory";
+        font-size: 2rem;
+        color: #111;
       }
       .memo {
-
+        position: relative;
+        width: 100%;
+        min-height: 120px;
+        max-height: 200px;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        font-family: "Maplestory";
+        font-weight: normal;
+        font-size: 1.4rem;
+      }
+      .modify-btn-wrap {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        display: flex;
+        gap: 3px;
       }
     }
   }
+`;
+const ModifyBtn = styled.button<{ $isModify: boolean }>`
+  width: 22px;
+  height: 22px;
+  border-radius: 0.5rem;
+  background: no-repeat center/cover url(${modifyIcon});
+  visibility: ${({ $isModify }) => ($isModify ? "hidden" : "visible")};
+
+  &:hover {
+    background: no-repeat center/cover url(${modifyHoverIcon});
+  }
+`;
+
+const MemoDiv = styled.div<{ $isModify: boolean }>`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: inherit;
+  visibility: ${({ $isModify }) => ($isModify ? "hidden" : "visible")};
+`;
+
+const ModifyMemoTextarea = styled.textarea<{ $isModify: boolean }>`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border-radius: inherit;
+  visibility: ${({ $isModify }) => ($isModify ? "visible" : "hidden")};
+`;
+
+const TextLengthDiv = styled.div<{ $isModify: boolean }>`
+  visibility: ${({ $isModify }) => ($isModify ? "visible" : "hidden")};
+`;
+
+const SaveModifyBtn = styled.button<{ $isModify: boolean }>`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  padding: 3px 5px;
+  border-radius: 0.5rem;
+  background-color: #ffa23f;
+  visibility: ${({ $isModify }) => ($isModify ? "visible" : "hidden")};
+
+  &:hover {
+    background-color: #ff890a;
+  }
+`;
+
+const CancelModifyBtn = styled.button<{ $isModify: boolean }>`
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 3px 5px;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  visibility: ${({ $isModify }) => ($isModify ? "visible" : "hidden")};
 `;
 
 const DivideBar = styled.div`

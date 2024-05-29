@@ -125,6 +125,10 @@ export function ToDos() {
     }
   }, [tabNow]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [settingMode, tabNow]);
+
   return (
     <ToDosDiv>
       <TabDiv>

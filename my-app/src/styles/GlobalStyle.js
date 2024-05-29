@@ -62,6 +62,15 @@ ${reset}
 		border: none;
 		border-color: transparent;
 	}
+	textarea {
+		border: none;
+		outline: none;
+		resize: none;
+		font-size: inherit;
+		font-family: inherit;
+		letter-spacing: inherit;
+		line-height: inherit;
+	}
 `;
 
 export default GlobalStyles;

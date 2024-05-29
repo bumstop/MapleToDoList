@@ -4,10 +4,12 @@ import { CharacterList } from "./components/CharacterList";
 import { ToDos } from "./components/ToDos";
 import { Modal } from "./components/Modal";
 import { Footer } from "./layout/Footer";
-import useResetTaskIsClear from "./func/useResetTaskIsClear";
+import { useResetTaskIsClear } from "./func/useResetTaskIsClear";
+import { useScrollTop } from "./func/useScrollTop";
 
 export function App() {
   useResetTaskIsClear();
+  useScrollTop();
 
   return (
     <div className="app">
