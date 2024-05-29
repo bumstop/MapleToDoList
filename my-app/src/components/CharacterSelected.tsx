@@ -144,7 +144,7 @@ const CharacterSelectedDiv = styled.div`
   position: sticky;
   top: 10px;
   width: 100%;
-  min-height: 150px;
+  min-height: 225px;
   padding: 10px;
   border-radius: 1rem;
   box-shadow: 0 1px 6px #20212447;

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/MapleToDoList/static/css/main.deea219a.css",
-    "main.js": "/MapleToDoList/static/js/main.249c09f9.js",
+    "main.js": "/MapleToDoList/static/js/main.2e420f61.js",
     "static/media/NotoSansKR-Thin.ttf": "/MapleToDoList/static/media/NotoSansKR-Thin.3c76aeeeb0d5302e0042.ttf",
     "static/media/NotoSansKR-ExtraLight.ttf": "/MapleToDoList/static/media/NotoSansKR-ExtraLight.a8d29999646a399fbca4.ttf",
     "static/media/NotoSansKR-Light.ttf": "/MapleToDoList/static/media/NotoSansKR-Light.eef1c4b85baf52cc28a7.ttf",
@@ -56,10 +56,10 @@
     "static/media/acane-symbol-1.webp": "/MapleToDoList/static/media/acane-symbol-1.f76a9fd746d8d03d5868.webp",
     "index.html": "/MapleToDoList/index.html",
     "main.deea219a.css.map": "/MapleToDoList/static/css/main.deea219a.css.map",
-    "main.249c09f9.js.map": "/MapleToDoList/static/js/main.249c09f9.js.map"
+    "main.2e420f61.js.map": "/MapleToDoList/static/js/main.2e420f61.js.map"
   },
   "entrypoints": [
     "static/css/main.deea219a.css",
-    "static/js/main.249c09f9.js"
+    "static/js/main.2e420f61.js"
   ]
 }

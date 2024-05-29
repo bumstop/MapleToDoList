@@ -38,9 +38,8 @@ const CharacterListNothingDiv = styled.div`
   justify-content: center;
   align-items: center;
 
-  flex-grow: 1;
   height: 100%;
-
+  padding-top: 40px;
   font-family: "Maplestory";
   font-weight: normal;
 `;
@@ -48,9 +47,7 @@ const CharacterSelectedNothingDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  flex-grow: 1;
-
+  height: 100%;
   font-family: "Maplestory";
   font-weight: normal;
 `;

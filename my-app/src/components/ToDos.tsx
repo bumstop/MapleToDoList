@@ -22,7 +22,7 @@ export function ToDos() {
   const [tabNow, setTabNow] = useState(symbolTab);
   let tabPrevRef = useRef(tabNow.current);
 
-  const [hoverLineWidth, setHoverLineWidth] = useState<number>(69.59);
+  const [hoverLineWidth, setHoverLineWidth] = useState<number>(0);
   const [hoverLineLeft, setHoverLineLeft] = useState<number>(0);
 
   const liMouseEnterEvent = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -71,22 +71,6 @@ export function ToDos() {
     }
   };
 
-  // useEffect(() => {
-
-  //   if (tabUl.current) {
-  //     const firstLi = tabUl.current.childNodes[1] as HTMLElement;
-  //     if (firstLi) {
-  //       const firstLiRect = firstLi.getBoundingClientRect();
-  //       const firstLiWidth = firstLiRect.width;
-  //       console.log('Layout Effect - First Li Width:', firstLiWidth);
-
-  //       // set initial position and width
-  //       setHoverLineWidth(firstLiWidth);
-  //       setHoverLineLeft(0);
-  //     }
-  //   }
-  // }, []);
-
   // 이전에 선택된 탭 폰트 normal, 현재 선택된 탭 폰트 bold 적용
 
   useEffect(() => {
@@ -108,21 +92,26 @@ export function ToDos() {
       `;
     }
 
-    // 탭 변경시 호버라인 동기화 (mouseleave 이벤트와 동일)
-    let targetRect: DOMRect;
-    let relativeLeft: number = 0;
-    let targetWidth: number = 0;
-    if (tabUl.current) {
-      const tabUlRect = tabUl.current.getBoundingClientRect(); // 부모 ul
+    //setTimeout을 이용해 getBoundingClientRect.width값을 정상적으로 가져오도록 함.
+    const updateHoverLine = setTimeout(() => {
+      // 탭 변경시 호버라인 동기화 (mouseleave 이벤트와 동일)
+      let targetRect: DOMRect;
+      let relativeLeft: number = 0;
+      let targetWidth: number = 0;
+      if (tabUl.current) {
+        const tabUlRect = tabUl.current.getBoundingClientRect(); // 부모 ul
 
-      if (tabNow.current) {
-        targetRect = tabNow.current.getBoundingClientRect();
-        targetWidth = targetRect.width;
-        relativeLeft = targetRect.left - tabUlRect.left;
+        if (tabNow.current) {
+          targetRect = tabNow.current.getBoundingClientRect();
+          targetWidth = targetRect.width;
+          relativeLeft = targetRect.left - tabUlRect.left;
+        }
+        setHoverLineLeft(relativeLeft);
+        setHoverLineWidth(targetWidth);
       }
-      setHoverLineLeft(relativeLeft);
-      setHoverLineWidth(targetWidth);
-    }
+    }, 300);
+
+    return () => clearTimeout(updateHoverLine);
   }, [tabNow]);
 
   useEffect(() => {
