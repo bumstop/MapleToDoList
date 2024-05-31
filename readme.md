@@ -1,5 +1,7 @@
 # <img src="./readme_image/maplelogo.png" width="25" height="25" vertical-align="top"/> 메할일 - MapleToDoList
 
+넥슨 게임 메이플스토리의 일별, 주별, 월별 할 일을 관리 할 수 있는 To Do App
+
 ## ⚙ 기술 스택
 
 <!-- <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white"> -->
