@@ -1,4 +1,4 @@
-import { ClimbingBoxLoader, ClipLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 import styled from "styled-components";
 
 export function Loading() {

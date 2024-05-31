@@ -121,7 +121,7 @@ export function ToDos() {
         setHoverLineLeft(relativeLeft);
         setHoverLineWidth(targetWidth);
       }
-    }, 300);
+    }, 1000);
 
     return () => clearTimeout(updateHoverLine);
   }, [tabNow]);

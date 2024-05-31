@@ -107,6 +107,7 @@ export function CharacterSelected() {
               <div>메모</div>
               <ModifyBtn onClick={() => setIsModify(true)} $isModify={isModify} />
             </div>
+            
             <div className="memo">
               <MemoDiv $isModify={isModify}>{character_memo}</MemoDiv>
               <ModifyMemoTextarea
