@@ -21,7 +21,7 @@ const getOcid = async (nickname: string): Promise<string | undefined> => {
   } catch (error) {
     if (error instanceof AxiosError) {
       // response 가 AxiosError 의 속성이기 때문에 narrowing 해줌
-      console.log("Error status:", error.response?.status);
+      console.log("Error:", error.response?.data);
       if (error.response?.status === 400) alert("닉네임이 존재하지 않습니다.");
     }
     return undefined;

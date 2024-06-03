@@ -41,8 +41,6 @@ export function CharacterSelected() {
     if (listOpenedCharacter && modifyTextarea.current) {
       const memoText = modifyTextarea.current.value;
       dispatch(modifyMemo([listOpenedCharacter, memoText]));
-
-      console.log(memoText);
     }
     setIsModify(false);
   };
@@ -71,6 +69,7 @@ export function CharacterSelected() {
     <CharacterSelectedDiv>
       {listOpenedCharacter ? (
         <>
+          {/* 캐릭터 */}
           <div className="character-selected">
             {/* 캐릭터 이미지 */}
             <div className="image-wrap">
