@@ -48,7 +48,7 @@ export function ToDoBoss() {
       </div>
       <div className="weekly">
         <div className="cate-head">주간</div>
-        {listedTodoBossDaily.length > 0 ? (
+        {listedTodoBossWeekly.length > 0 ? (
           <ContentsSection data={boss.weekly} toDos={toDoBossWeekly} calledBy="weekly-boss" />
         ) : (
           <ContentsNothing calledBy="ToDos" />
@@ -56,7 +56,7 @@ export function ToDoBoss() {
       </div>
       <div className="monthly">
         <div className="cate-head">월간</div>
-        {listedTodoBossDaily.length > 0 ? (
+        {listedTodoBossMonthly.length > 0 ? (
           <ContentsSection data={boss.monthly} toDos={toDoBossMonthly} calledBy="monthly-boss" />
         ) : (
           <ContentsNothing calledBy="ToDos" />
