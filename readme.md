@@ -114,4 +114,4 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 
 ## 🛠 Trouble Shooting
 
-[트러블 슈팅 readme.md](https://github.com/bumstop/MapleToDoList/blob/main/trouble.md)
+[트러블 슈팅 readme.md](https://github.com/bumstop/MapleToDoList/blob/main/trouble-shooting.md)
