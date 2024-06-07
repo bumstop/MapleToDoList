@@ -111,3 +111,7 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 3. 컨텐츠 Todos (추가 예정)  
    [일일] 몬스터파크(일반 & 익스트림)  
    [주간] 하이마운틴, 수로, 무릉도장
+
+## 🛠 Trouble Shooting
+
+[트러블 슈팅 readme.md](https://github.com/bumstop/MapleToDoList/blob/main/trouble.md)
