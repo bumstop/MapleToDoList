@@ -6,18 +6,53 @@ import { RootState } from "../redux/store";
 import { settingIcon } from "../assets/images";
 import { Loading } from "./Loading";
 
-const ToDoSymbol = React.lazy(() =>
-  import("./ToDoSymbol").then(({ ToDoSymbol }) => ({ default: ToDoSymbol }))
-);
-const ToDoBoss = React.lazy(() =>
-  import("./ToDoBoss").then(({ ToDoBoss }) => ({ default: ToDoBoss }))
-);
-const ToDoSymbolSetting = React.lazy(() =>
-  import("./ToDoSymbolSetting").then(({ ToDoSymbolSetting }) => ({ default: ToDoSymbolSetting }))
-);
-const ToDoBossSetting = React.lazy(() =>
-  import("./ToDoBossSetting").then(({ ToDoBossSetting }) => ({ default: ToDoBossSetting }))
-);
+// const MainPage = React.lazy(() => {
+//   return new Promise<{ default: React.ComponentType }>((resolve) => {
+//     setTimeout(() => resolve(import("./pages/MainPage/MainPage")), 2000);
+//   });
+// });
+
+const ToDoSymbol = React.lazy(() => {
+  return new Promise<{ default: React.ComponentType }>((resolve) => {
+    setTimeout(
+      () => resolve(import("./ToDoSymbol").then(({ ToDoSymbol }) => ({ default: ToDoSymbol }))),
+      500
+    );
+  });
+});
+
+const ToDoBoss = React.lazy(() => {
+  return new Promise<{ default: React.ComponentType }>((resolve) => {
+    setTimeout(
+      () => resolve(import("./ToDoBoss").then(({ ToDoBoss }) => ({ default: ToDoBoss }))),
+      500
+    );
+  });
+});
+const ToDoSymbolSetting = React.lazy(() => {
+  return new Promise<{ default: React.ComponentType }>((resolve) => {
+    setTimeout(
+      () =>
+        resolve(
+          import("./ToDoSymbolSetting").then(({ ToDoSymbolSetting }) => ({
+            default: ToDoSymbolSetting,
+          }))
+        ),
+      500
+    );
+  });
+});
+const ToDoBossSetting = React.lazy(() => {
+  return new Promise<{ default: React.ComponentType }>((resolve) => {
+    setTimeout(
+      () =>
+        resolve(
+          import("./ToDoBossSetting").then(({ ToDoBossSetting }) => ({ default: ToDoBossSetting }))
+        ),
+      500
+    );
+  });
+});
 
 // 어떤 캐릭터의 리스트를 받아올지 결정,
 // 리스트에 있는 캐릭터 카드를 클릭하면 변경 되도록 해야함.

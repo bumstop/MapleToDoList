@@ -10,6 +10,7 @@ const getOcid = async (nickname: string): Promise<string | undefined> => {
       headers: {
         accept: "application/json",
         "x-nxopen-api-key": NEXONOPEN_API_KEY,
+        
       },
       baseURL: "https://open.api.nexon.com/maplestory/v1/id",
       params: {
