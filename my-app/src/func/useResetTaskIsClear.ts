@@ -41,12 +41,16 @@ export const useResetTaskIsClear = () => {
     // 주간컨텐츠 초기화
     // 주간(월) 초기화
     const weeklyLastResetByMonday = getLastResetTime(WEEKLY_MONDAY_RESET_KEY);
+
     const weekNumberByMonday = Math.floor(
       (now.getTime() + 4 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
     );
-    const LastResetWeekNumberByMonday = Math.floor(
-      (now.getTime() + 4 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
-    );
+    const LastResetWeekNumberByMonday =
+      weeklyLastResetByMonday &&
+      Math.floor(
+        (weeklyLastResetByMonday.getTime() + 4 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
+      );
+
     // weekNumber 는 금요일 기준으로 바뀜, 월요일을 기준으로 잡기위해 getTime에서 4일을 더해줌
 
     if (!weeklyLastResetByMonday || weekNumberByMonday !== LastResetWeekNumberByMonday) {
@@ -59,9 +63,11 @@ export const useResetTaskIsClear = () => {
     const weekNumberByThursday = Math.floor(
       (now.getTime() + 1 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
     );
-    const LastResetWeekNumberByThursday = Math.floor(
-      (now.getTime() + 1 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
-    );
+    const LastResetWeekNumberByThursday =
+      weeklyLastResetByThursday &&
+      Math.floor(
+        (weeklyLastResetByThursday.getTime() + 1 * 24 * 60 * 60 * 1000) / (7 * 24 * 60 * 60 * 1000)
+      );
     // weekNumber 는 금요일 기준으로 바뀜, 월요일을 기준으로 잡기위해 getTime에서 1일을 더해줌
 
     if (!weeklyLastResetByThursday || weekNumberByThursday !== LastResetWeekNumberByThursday) {
