@@ -55,23 +55,33 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
       <tr>
          <th style="text-align: center">캐릭터 검색 + 결과 모달 + 캐릭터 추가</th>
       </tr>
+      <tr>
          <td><img src="./trouble_image/mapletodolist1.gif" /></td>
+      </tr>
       <tr>
          <th style="text-align: center">심볼 투두리스트 체크</th>
       </tr>
+      <tr>
          <td><img src="./trouble_image/mapletodolist2.gif"/></td>
+      </tr>
       <tr>
          <th style="text-align: center">로딩 + 보스 투두리스트 체크</th> 
       </tr>
+      <tr>
          <td><img src="./trouble_image/mapletodolist3.gif" /></td>
+      </tr>
       <tr>
          <th style="text-align: center">투두리스트 수정</th>
       </tr>
+      <tr>
          <td><img src="./trouble_image/mapletodolist4.gif" /></td>
+      </tr>
       <tr>
          <th style="text-align: center">메모장</th>
       </tr>
+      <tr>
          <td><img src="./trouble_image/mapletodolist5.gif" /></td>
+      </tr>
    </tbody>
 </table>
 
