@@ -53,7 +53,12 @@ export const getCharacterBasicInfo = async (
 
      return response.data;
   } catch (error) {
-    console.log("Error:", error);
+    if (error instanceof AxiosError) {
+      // response 가 AxiosError 의 속성이기 때문에 narrowing 해줌
+      console.log("Error:", error.response?.data);
+      if (error.response?.status === 400) alert("랭킹에 등록되지 않은 캐릭터입니다.");
+    }
+    return undefined;
   }
 };
 

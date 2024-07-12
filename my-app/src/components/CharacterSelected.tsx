@@ -111,6 +111,8 @@ export function CharacterSelected() {
               <MemoDiv $isModify={isModify}>{character_memo}</MemoDiv>
               <ModifyMemoTextarea
                 $isModify={isModify}
+
+                
                 ref={modifyTextarea}
                 maxLength={modifyMaxLength}
                 onChange={() => {

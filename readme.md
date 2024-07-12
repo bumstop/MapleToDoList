@@ -15,7 +15,7 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 
 - Typescript 활용  
   타입선언 및 타입가드를 통해 대상 객체로의 접근을 안전하게 수행합니다.
-	Redux에 Typescript를 적용합니다.
+  Redux에 Typescript를 적용합니다.
 
 - Redux 활용  
   redux-toolkit을 활용해 전역 관리가 필요한 데이터를 관리합니다.  
@@ -26,7 +26,7 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
   API에 요청해 받아온 정보를 저장하고 활용합니다.
 
 - Styled-Components  
-	props 전달을 통해 가변적인 스타일을 적용합니다.  
+  props 전달을 통해 가변적인 스타일을 적용합니다.
 
 ## ⚙ 기술 스택
 
@@ -49,6 +49,41 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 </div>
 
 ## 📄 페이지 구성
+
+<table>
+  <tbody>
+    <tr>
+      <th style="text-align: center">캐릭터 검색 + 결과 모달 + 캐릭터 추가</th>
+      <th style="text-align: center">심볼 투두리스트 체크</th>
+    </tr> 
+    <tr>
+      <td>
+      <img src="./trouble_image/mapletodolist1.gif" />
+      </td>
+      <td>
+        <img src="./trouble_image/mapletodolist2.gif"/>
+      </td>
+    </tr>
+    <tr>
+      <th style="text-align: center">로딩 + 보스 투두리스트 체크</th>
+      <th style="text-align: center">투두리스트 수정</th>
+    </tr> 
+    <tr>
+      <td>
+        <img src="./trouble_image/mapletodolist3.gif" />
+      </td>
+      <td>
+        <img src="./trouble_image/mapletodolist4.gif" />
+      </td>
+    </tr>
+    <tr>
+      <th style="text-align: center">메모장</th>
+    </tr> 
+    <td>
+      <img src="./trouble_image/mapletodolist5.gif" />
+   </td>
+  </tbody>
+</table>
 
 ### 메인 (컨텐츠)
 
