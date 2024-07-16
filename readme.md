@@ -28,6 +28,12 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 - Styled-Components  
   props 전달을 통해 가변적인 스타일을 적용합니다.
 
+## 🛠 Trouble Shooting 목록
+
+- [리스트오픈 기능구현 과정]()
+- [개발 중 발생한 에러](https://github.com/bumstop/MapleToDoList/blob/main/dev_error.md)
+
+
 ## ⚙ 기술 스택
 
 <!-- <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white"> -->
@@ -56,31 +62,31 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
          <th style="text-align: center">캐릭터 검색 + 결과 모달 + 캐릭터 추가</th>
       </tr>
       <tr>
-         <td><img src="./trouble_image/mapletodolist1.gif" /></td>
+         <td><img src="./readme_image/mapletodolist1.gif" /></td>
       </tr>
       <tr>
          <th style="text-align: center">심볼 투두리스트 체크</th>
       </tr>
       <tr>
-         <td><img src="./trouble_image/mapletodolist2.gif"/></td>
+         <td><img src="./readme_image/mapletodolist2.gif"/></td>
       </tr>
       <tr>
          <th style="text-align: center">로딩 + 보스 투두리스트 체크</th> 
       </tr>
       <tr>
-         <td><img src="./trouble_image/mapletodolist3.gif" /></td>
+         <td><img src="./readme_image/mapletodolist3.gif" /></td>
       </tr>
       <tr>
          <th style="text-align: center">투두리스트 수정</th>
       </tr>
       <tr>
-         <td><img src="./trouble_image/mapletodolist4.gif" /></td>
+         <td><img src="./readme_image/mapletodolist4.gif" /></td>
       </tr>
       <tr>
          <th style="text-align: center">메모장</th>
       </tr>
       <tr>
-         <td><img src="./trouble_image/mapletodolist5.gif" /></td>
+         <td><img src="./readme_image/mapletodolist5.gif" /></td>
       </tr>
    </tbody>
 </table>
@@ -146,7 +152,3 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 3. 컨텐츠 Todos (추가 예정)  
    [일일] 몬스터파크(일반 & 익스트림)  
    [주간] 하이마운틴, 수로, 무릉도장
-
-## 🛠 Trouble Shooting
-
-[트러블 슈팅 readme.md](https://github.com/bumstop/MapleToDoList/blob/main/trouble-shooting.md)
