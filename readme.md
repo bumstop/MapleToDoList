@@ -1,40 +1,4 @@
-# <img src="./readme_image/maplelogo.png" width="25" height="25" vertical-align="top"/> 메할일 - MapleToDoList
-
-넥슨 게임, 메이플스토리의 할 일을 관리 할 수 있는 To Do App 입니다.  
-관리하고 싶은 캐릭터를 `검색 > 즐겨찾기` 를 통해 추가 할 수 있습니다.  
-캐릭터 검색 및 캐릭터 카드에 활용할 데이터는 [NEXON OPEN API](https://openapi.nexon.com/game/maplestory/?id=22) 를 활용하고 있습니다.
-
-각 캐릭터는 간단한 메모 작성이 가능한 메모장을 가지고 있습니다.  
-`수정하기` 기능을 통해 메모를 수정하고, 저장 할 수 있습니다.
-
-추가한 캐릭터는 심볼, 보스로 구성된 ToDoList를 가집니다.  
-ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성되어 있습니다.  
-각 ToDos는 정해진 주기마다 초기화되며, `수정하기` 기능을 통해 리스트에서 추가 또는 제거 할 수 있습니다.
-
-## 📌 프로젝트 목표
-
-- Typescript 활용  
-  타입선언 및 타입가드를 통해 대상 객체로의 접근을 안전하게 수행합니다.
-  Redux에 Typescript를 적용합니다.
-
-- Redux 활용  
-  redux-toolkit을 활용해 전역 관리가 필요한 데이터를 관리합니다.  
-  전역상태관리를 통해 props의 복잡도를 개선합니다.  
-  redux-persist를 활용해 재접속시에도 데이터가 날아가지 않도록 관리합니다.
-
-- Rest API  
-  API에 요청해 받아온 정보를 저장하고 활용합니다.
-
-- Styled-Components  
-  props 전달을 통해 가변적인 스타일을 적용합니다.
-
-## 🛠 Trouble Shooting 목록
-
-- [리스트오픈 기능구현 과정]()
-- [개발 중 발생한 에러](https://github.com/bumstop/MapleToDoList/blob/main/dev_error.md)
-
-
-## ⚙ 기술 스택
+# ⚙ 기술 스택
 
 <!-- <img src="https://img.shields.io/badge/표시할이름-색상?style=for-the-badge&logo=기술스택아이콘&logoColor=white"> -->
 <div align="center">
@@ -54,7 +18,24 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
   <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
 </div>
 
-## 📄 페이지 구성
+<br>
+
+# <img src="./readme_image/maplelogo.png" width="25" height="25" vertical-align="top"/> 메할일 - MapleToDoList
+
+https://bumstop.github.io/MapleToDoList/
+
+넥슨 게임, 메이플스토리의 할 일을 관리 할 수 있는 To Do App 입니다.  
+관리하고 싶은 캐릭터를 `검색 > 즐겨찾기` 를 통해 추가 할 수 있습니다.  
+캐릭터 검색 및 캐릭터 카드에 활용할 데이터는 [NEXON OPEN API](https://openapi.nexon.com/game/maplestory/?id=22) 를 활용하고 있습니다.
+
+각 캐릭터는 간단한 메모 작성이 가능한 메모장을 가지고 있습니다.  
+`수정하기` 기능을 통해 메모를 수정하고, 저장 할 수 있습니다.
+
+추가한 캐릭터는 심볼, 보스로 구성된 ToDoList를 가집니다.  
+ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성되어 있습니다.  
+각 ToDos는 정해진 주기마다 초기화되며, `수정하기` 기능을 통해 리스트에서 추가 또는 제거 할 수 있습니다.
+
+<br>
 
 <table>
    <tbody>
@@ -91,9 +72,37 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
    </tbody>
 </table>
 
-### 메인 (컨텐츠)
+<br>
 
----
+# 🛠 Trouble Shooting
+
+- [**`openToDoList`** 기능구현 과정](https://github.com/bumstop/MapleToDoList/blob/main/trouble_shooting/openToDoList.md)
+- [개발 중 발생한 에러](https://github.com/bumstop/MapleToDoList/blob/main/dev_error.md)
+
+<br>
+
+# 📌 프로젝트 목표
+
+- Typescript 활용  
+  타입선언 및 타입가드를 통해 대상 객체로의 접근을 안전하게 수행합니다.
+  Redux에 Typescript를 적용합니다.
+
+- Redux 활용  
+  redux-toolkit을 활용해 전역 관리가 필요한 데이터를 관리합니다.  
+  전역상태관리를 통해 props의 복잡도를 개선합니다.  
+  redux-persist를 활용해 재접속시에도 데이터가 유지되도록 관리합니다.
+
+- Rest API  
+  API에 요청해 받아온 정보를 저장하고 활용합니다.
+
+- Styled-Components  
+  props 전달을 통해 가변적인 스타일을 적용합니다.
+
+<br>
+
+# 📄 페이지 구성
+
+## 메인 (컨텐츠)
 
 - 좌측
 
@@ -121,24 +130,20 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 
 <br/>
 
-### 모달 (검색 정보)
-
----
+## 모달 (검색 정보)
 
 - 검색한 캐릭터의 카드 생성 및 노출
 - 즐겨찾기를 통해 리스트에 해당 캐릭터 추가 가능
 
 <br/>
 
-### 하단 (기타 정보)
-
----
+## 하단 (기타 정보)
 
 - 기타 정보
 
 <br/>
 
-## 📑 Task(Todos)
+# 📑 Task(Todos)
 
 - 캐릭터 별 Todos
 
