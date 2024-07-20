@@ -77,6 +77,7 @@ ToDoList의 ToDos는 일간, 주간(월), 주간(목), 월간 할 일로 구성�
 # 🛠 Trouble Shooting
 
 - [**`openToDoList`** 기능구현 과정](https://github.com/bumstop/MapleToDoList/blob/main/trouble_shooting/openToDoList.md)
+- [**`AllChecker`** 기능구현 과정](https://github.com/bumstop/MapleToDoList/blob/main/trouble_shooting/AllChecker.md)
 - [개발 중 발생한 에러](https://github.com/bumstop/MapleToDoList/blob/main/trouble_shooting/dev_error.md)
 
 <br>

@@ -4,7 +4,7 @@
 
 `ToDoSymbol` 과 `ToDoBoss` 컴포넌트의 모든 todos를 체크해야 할 때 일일이 체크해야 하는 번거로움이 생겼습니다.
 
-![](./trouble_image/todos_check.gif)
+![](./trouble_image/todos_check_before.gif)
 
 ## 만들고 싶은 기능
 
@@ -129,6 +129,8 @@ useEffect(() => {
 
 # TO-BE
 
+![](./trouble_image/todos_check_after.gif)
+
 ```tsx
 // AllChecker.tsx
 
@@ -151,3 +153,7 @@ const AllCheckerDiv = styled.div<{ $isChecked: boolean }>`
 	}
 `;
 ```
+
+해당 기능을 구현하며 사용자의 입장에서 생각하는 것이 사용자 경험에 큰 영향을 미친다는 것을 직접 느낄 수 있었습니다.
+
+이 같은 생각으로 인해 트러블 케이스를 찾아내고 수정하는데 있어 큰 도움이 되었습니다.
