@@ -3,12 +3,9 @@ import { boss } from "../data/boss";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ContentsNothing } from "./ContentsNothing";
-import {
-  ToDoCategoryType,
-  TaskInterface,
-  toggleIsClearState,
-} from "../redux/characterListSlice";
+import { ToDoCategoryType, TaskInterface, toggleIsClearState } from "../redux/characterListSlice";
 import { checkIcon } from "../assets/images";
+import { AllChecker } from "./AllChecker";
 
 export function ToDoBoss() {
   const characterList = useSelector((state: RootState) => state.characterList);
@@ -39,7 +36,10 @@ export function ToDoBoss() {
   return (
     <ToDoBossDiv>
       <div className="daily">
-        <div className="cate-head">일간</div>
+        <div className="cate-head">
+          <div className="cate-title">일간</div>
+          <AllChecker toDos={toDoBossDaily} calledBy="daily-boss" />
+        </div>
         {listedTodoBossDaily.length > 0 ? (
           <ContentsSection data={boss.daily} toDos={toDoBossDaily} calledBy="daily-boss" />
         ) : (
@@ -47,7 +47,10 @@ export function ToDoBoss() {
         )}
       </div>
       <div className="weekly">
-        <div className="cate-head">주간</div>
+        <div className="cate-head">
+          <div className="cate-title">주간</div>
+          <AllChecker toDos={toDoBossWeekly} calledBy="weekly-boss" />
+        </div>
         {listedTodoBossWeekly.length > 0 ? (
           <ContentsSection data={boss.weekly} toDos={toDoBossWeekly} calledBy="weekly-boss" />
         ) : (
@@ -55,7 +58,10 @@ export function ToDoBoss() {
         )}
       </div>
       <div className="monthly">
-        <div className="cate-head">월간</div>
+        <div className="cate-head">
+          <div className="cate-title">월간</div>
+          <AllChecker toDos={toDoBossMonthly} calledBy="monthly-boss" />
+        </div>
         {listedTodoBossMonthly.length > 0 ? (
           <ContentsSection data={boss.monthly} toDos={toDoBossMonthly} calledBy="monthly-boss" />
         ) : (
@@ -66,17 +72,7 @@ export function ToDoBoss() {
   );
 }
 
-const ToDoBossDiv = styled.div`
-  padding: 10px;
-
-  & {
-    .cate-head {
-      font-size: 20px;
-    }
-  }
-`;
-
-interface DataType {
+export interface DataType {
   data: { name: string; image: string }[];
   calledBy: ToDoCategoryType;
   toDos: { [key: string]: TaskInterface };
@@ -110,6 +106,18 @@ function ContentsSection({ data, toDos, calledBy }: DataType) {
     </ContentsSectionDiv>
   );
 }
+
+const ToDoBossDiv = styled.div`
+  padding: 10px;
+
+  & {
+    .cate-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+    }
+  }
+`;
 
 const ContentsSectionDiv = styled.div`
   display: flex;

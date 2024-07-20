@@ -3,12 +3,9 @@ import { symbol } from "../data/symbol";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ContentsNothing } from "./ContentsNothing";
-import {
-  TaskInterface,
-  ToDoCategoryType,
-  toggleIsClearState,
-} from "../redux/characterListSlice";
+import { TaskInterface, ToDoCategoryType, toggleIsClearState } from "../redux/characterListSlice";
 import { checkIcon } from "../assets/images";
+import { AllChecker } from "./AllChecker";
 
 export function ToDoSymbol() {
   const characterList = useSelector((state: RootState) => state.characterList);
@@ -46,7 +43,10 @@ export function ToDoSymbol() {
       <div className="daily">
         {/* 아케인 일일퀘스트 */}
         <div className="daily-acane">
-          <div className="cate-head">아케인 일일퀘스트</div>
+          <div className="cate-head">
+            <div className="cate-title">아케인 일일퀘스트</div>
+            <AllChecker toDos={toDoSymbolDailyAcane} calledBy="daily-acane" />
+          </div>
           {listedToDoSymbolDailyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.daily.acane}
@@ -60,7 +60,10 @@ export function ToDoSymbol() {
 
         {/* 그란디스 일일퀘스트 */}
         <div className="daily-grandis">
-          <div className="cate-head">그란디스 일일퀘스트</div>
+          <div className="cate-head">
+            <div className="cate-title">그란디스 일일퀘스트</div>
+            <AllChecker toDos={toDoSymbolDailyGrandis} calledBy="daily-grandis" />
+          </div>
           {listedToDoSymbolDailyGrandis.length > 0 ? (
             <ContentsSection
               data={symbol.daily.grandis}
@@ -77,7 +80,10 @@ export function ToDoSymbol() {
       <div className="weekly">
         {/* 아케인 주간퀘스트 */}
         <div className="weekly-acane">
-          <div className="cate-head">아케인 주간컨텐츠</div>
+          <div className="cate-head">
+            <div className="cate-title">아케인 주간컨텐츠</div>
+            <AllChecker toDos={toDoSymbolWeeklyAcane} calledBy="weekly-acane" />
+          </div>
           {listedToDoSymbolWeeklyAcane.length > 0 ? (
             <ContentsSection
               data={symbol.weekly.acane}
@@ -98,12 +104,14 @@ const ToDoSymbolDiv = styled.div`
 
   & {
     .cate-head {
+      display: flex;
+      justify-content: space-between;
       font-size: 20px;
     }
   }
 `;
 
-interface DataType {
+export interface DataType {
   data: { text: string; image: string }[];
   calledBy: ToDoCategoryType;
   toDos: { [key: string]: TaskInterface };
@@ -174,7 +182,6 @@ const ContentsBoxDiv = styled.div<{ $isClear: boolean }>`
     left: 50%;
     transform: translate(-50%, -50%);
     height: 90%;
-
   }
   .text {
     flex-grow: 1;
